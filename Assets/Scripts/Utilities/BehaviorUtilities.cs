@@ -8,5 +8,10 @@ namespace Utilities
         {
             transform.position += direction;
         }
+        
+        public static void MoveBy(this Transform transform, Vector3 distance)
+        {
+            transform.position += distance;
+        }
     }
 }

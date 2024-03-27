@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4377774365176765838}
   - component: {fileID: 7506338311937468570}
+  - component: {fileID: -2678448240287202683}
   m_Layer: 0
   m_Name: RedCarLeft
   m_TagString: Untagged
@@ -84,3 +85,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-2678448240287202683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6714951821797951133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82f9282025de75b4fafb41bc4a3ab552, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstacleDirection: 0
+  speed: 20

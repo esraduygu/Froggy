@@ -17,7 +17,7 @@ namespace Player
         private void HandleInput()
         {
             if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
-                BehaviorUtilities.Move(transform, Vector3.up);
+                BehaviorUtilities.Move(transform, Vector3.up * 2);
             else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
                 BehaviorUtilities.Move(transform, Vector3.down);
             else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))

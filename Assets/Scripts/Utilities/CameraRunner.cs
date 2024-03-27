@@ -9,6 +9,7 @@ namespace Utilities
         [SerializeField] private float smoothSpeed;
         [SerializeField] private float minYLimit;
         [SerializeField] private float maxYLimit;
+        
         private void Update()
         {
             FollowPlayer();
