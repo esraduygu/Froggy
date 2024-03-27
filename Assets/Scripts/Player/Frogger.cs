@@ -3,7 +3,7 @@ using Utilities;
 
 namespace Player
 {
-    public class Player : MonoBehaviour
+    public class Frogger : MonoBehaviour
     {
         [SerializeField] private float xPos;
         [SerializeField] private float minY;
@@ -17,7 +17,7 @@ namespace Player
         private void HandleInput()
         {
             if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
-                BehaviorUtilities.Move(transform, Vector3.up * 2);
+                BehaviorUtilities.Move(transform, Vector3.up);
             else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
                 BehaviorUtilities.Move(transform, Vector3.down);
             else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
