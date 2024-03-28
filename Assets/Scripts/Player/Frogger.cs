@@ -19,31 +19,28 @@ namespace Player
         {
             if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
             {
-                // transform.MoveBy(Vector3.up);
-                // transform.MoveBy(Vector3.up);
                 StartLeap(Vector3.up);
                 transform.MoveByRotation(new Vector3(0f,0f,0f));
             }
             else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
             {
-                transform.MoveBy(Vector3.down);
+                StartLeap(Vector3.down);
                 transform.MoveByRotation(new Vector3(0f,0f,180f));
             }
             else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                transform.MoveBy(Vector3.left);
+                StartLeap(Vector3.left);
                 transform.MoveByRotation(new Vector3(0f,0f,90f));
             }
             else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
             {
-                transform.MoveBy(Vector3.right);
+                StartLeap(Vector3.right);
                 transform.MoveByRotation(new Vector3(0f,0f,-90f));                
             }
         }
 
-        private void LimitPosition()
+        private void SetPosition(Vector3 newPosition)
         {
-            var newPosition = transform.position;
             var clampedX = Mathf.Clamp(newPosition.x, -xPos, xPos);
             var clampedY = Mathf.Clamp(newPosition.y, minY, maxY);
             newPosition = new Vector3(clampedX, clampedY, 0);
@@ -67,13 +64,12 @@ namespace Player
             while (elapsed < duration)
             {
                 var normalizedTime = elapsed / duration;
-                transform.position = Vector3.Lerp(startPosition, destination, normalizedTime);
-                LimitPosition();
+                SetPosition(Vector3.Lerp(startPosition, destination, normalizedTime));
                 elapsed += Time.deltaTime;
                 yield return null;
             }
-            transform.position = destination;
-            LimitPosition();
+            
+            SetPosition(destination);
         }
     }
 }
