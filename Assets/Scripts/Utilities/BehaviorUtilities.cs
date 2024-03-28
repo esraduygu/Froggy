@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 namespace Utilities
@@ -11,7 +10,7 @@ namespace Utilities
             transform.position += distance;
         }
 
-        public static void MoveByRotation(this Transform transform, Vector3 euler)
+        public static void SetRotation(this Transform transform, Vector3 euler)
         {
             transform.rotation = Quaternion.Euler(euler);
         }

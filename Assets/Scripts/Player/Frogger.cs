@@ -9,6 +9,7 @@ namespace Player
         [SerializeField] private float xPos;
         [SerializeField] private float minY;
         [SerializeField] private float maxY;
+        
 
         private void Update()
         {
@@ -20,22 +21,22 @@ namespace Player
             if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
             {
                 StartLeap(Vector3.up);
-                transform.MoveByRotation(new Vector3(0f,0f,0f));
+                transform.SetRotation(new Vector3(0f,0f,0f));
             }
             else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
             {
                 StartLeap(Vector3.down);
-                transform.MoveByRotation(new Vector3(0f,0f,180f));
+                transform.SetRotation(new Vector3(0f,0f,180f));
             }
             else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 StartLeap(Vector3.left);
-                transform.MoveByRotation(new Vector3(0f,0f,90f));
+                transform.SetRotation(new Vector3(0f,0f,90f));
             }
             else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
             {
                 StartLeap(Vector3.right);
-                transform.MoveByRotation(new Vector3(0f,0f,-90f));                
+                transform.SetRotation(new Vector3(0f,0f,-90f));                
             }
         }
 
