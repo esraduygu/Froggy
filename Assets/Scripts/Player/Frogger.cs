@@ -17,13 +17,25 @@ namespace Player
         private void HandleInput()
         {
             if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
-                BehaviorUtilities.Move(transform, Vector3.up);
+            {
+                transform.MoveBy(Vector3.up);
+                transform.MoveByRotation(new Vector3(0f,0f,0f));
+            }
             else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
-                BehaviorUtilities.Move(transform, Vector3.down);
+            {
+                transform.MoveBy(Vector3.down);
+                transform.MoveByRotation(new Vector3(0f,0f,180f));
+            }
             else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
-                BehaviorUtilities.Move(transform, Vector3.left);
-            else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) 
-                BehaviorUtilities.Move(transform, Vector3.right);
+            {
+                transform.MoveBy(Vector3.left);
+                transform.MoveByRotation(new Vector3(0f,0f,90f));
+            }
+            else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                transform.MoveBy(Vector3.right);
+                transform.MoveByRotation(new Vector3(0f,0f,-90f));                
+            }
         
             LimitPosition();
         }
