@@ -6,6 +6,7 @@ namespace Player
 {
     public class Frogger : MonoBehaviour
     {
+        [SerializeField] private SpriteManager spriteManager;
         [SerializeField] private float xPos;
         [SerializeField] private float minY;
         [SerializeField] private float maxY;
@@ -62,6 +63,8 @@ namespace Player
             var elapsed = 0f;
             var duration = 0.125f;
             
+            spriteManager.SetSprite(SpriteManager.SpriteType.Leap);
+            
             while (elapsed < duration)
             {
                 var normalizedTime = elapsed / duration;
@@ -71,6 +74,7 @@ namespace Player
             }
             
             SetPosition(destination);
+            spriteManager.SetSprite(SpriteManager.SpriteType.Idle);
         }
     }
 }
