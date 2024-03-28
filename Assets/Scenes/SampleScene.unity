@@ -229,6 +229,62 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &133760601
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 133760603}
+  - component: {fileID: 133760602}
+  m_Layer: 0
+  m_Name: Lane1Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &133760602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133760601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 970fa847c2a0ead43b33baa172242bb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnIntervals:
+  - interval: 2
+    probability: 0.6
+  - interval: 4
+    probability: 0.3
+  - interval: 6
+    probability: 0.1
+  obstacleProbabilities:
+  - prefab: {fileID: 1101059168509245464, guid: cdaf8d33e370ecc4e87ced7be0d5e528, type: 3}
+    probability: 0.5
+  - prefab: {fileID: 2795905012595346281, guid: 3df29bb68c76eba4fa4438fa79407073, type: 3}
+    probability: 0.5
+--- !u!4 &133760603
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133760601}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8, y: -5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &150983930
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -303,7 +359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 640147785289152429df4318601b229b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteManager: {fileID: 91954516}
+  playerSpriteController: {fileID: 91954516}
   xPos: 6
   minY: -6
   maxY: 6
@@ -1695,3 +1751,4 @@ SceneRoots:
   - {fileID: 2139606023}
   - {fileID: 1807735914139737677}
   - {fileID: 91954517}
+  - {fileID: 133760603}

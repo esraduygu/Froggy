@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpriteManager : MonoBehaviour
+namespace Player
 {
+    public class PlayerSpriteController : MonoBehaviour
+    {
         public enum SpriteType
         {
             Idle,
@@ -21,4 +23,5 @@ public class SpriteManager : MonoBehaviour
                 spriteRenderer.sprite = sprites[index];
             }
         }
+    }
 }

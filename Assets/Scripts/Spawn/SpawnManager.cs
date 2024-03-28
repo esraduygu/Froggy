@@ -1,4 +1,4 @@
-using Unity.Mathematics;
+using System.Linq;
 using UnityEngine;
 using Utilities;
 
@@ -6,21 +6,50 @@ namespace Spawn
 {
     public class SpawnManager : MonoBehaviour
     {
+        [SerializeField] private SpawnInterval[] spawnIntervals;
+        [SerializeField] private ObstacleProbability[] obstacleProbabilities;
         
-        private void Spawn()
+        private float _timer;
+        private float _spawnInterval;
+
+        private void Awake()
         {
-            // const float easyProbability = 0.4f;
-            // const float normalProbability = 0.3f;
-            // const float hardProbability = 0.2f;
-            // const float extremeProbability = 0.1f;
-            //
-            // var index = MathUtilities.PickOne(easyProbability, normalProbability, hardProbability, extremeProbability);
-            //
-            // var obstaclePrefab = obstaclePrefabs[index];
-            // var spawnPos = transform.position;
-            // spawnPos.y += obstaclePrefab.transform.position.y;
-            //
-            // Instantiate(obstaclePrefab, spawnPos, quaternion.identity);
+            _spawnInterval = PickSpawnInterval();
+        }
+
+        private void Update()
+        {
+            HandleSpawnTimer();
+        }
+
+        private void HandleSpawnTimer()
+        {
+            _timer += Time.deltaTime;
+            
+            if (_timer < _spawnInterval) 
+                return;
+            
+            _timer = 0f;
+            
+            _spawnInterval = PickSpawnInterval();
+            
+            SpawnObstacle();
+        }
+
+        private float PickSpawnInterval()
+        {
+            var random = MathUtilities.PickOne(spawnIntervals.Select(x => x.probability).ToArray());
+            var spawnInterval = spawnIntervals[random];
+            return spawnInterval.interval;
+        }
+
+        private void SpawnObstacle()
+        {
+            var index = MathUtilities.PickOne(obstacleProbabilities.Select(x => x.probability).ToArray());
+            var obstaclePrefab = obstacleProbabilities[index].prefab;
+            var spawnPos = transform.position;
+            
+            Instantiate(obstaclePrefab, spawnPos, Quaternion.identity);
         }
     }
 }
