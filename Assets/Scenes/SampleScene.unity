@@ -259,10 +259,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnIntervals:
-  - interval: 2
-    probability: 0.6
+  - interval: 1
+    probability: 0.8
   - interval: 4
-    probability: 0.3
+    probability: 0.1
   - interval: 6
     probability: 0.1
   obstacleProbabilities:
