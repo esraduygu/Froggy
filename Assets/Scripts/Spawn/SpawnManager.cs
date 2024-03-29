@@ -7,7 +7,7 @@ namespace Spawn
     public class SpawnManager : MonoBehaviour
     {
         [SerializeField] private SpawnInterval[] spawnIntervals;
-        [SerializeField] private ObstacleProbability[] obstacleProbabilities;
+        [SerializeField] private GameObject obstaclePrefab;
         
         private float _timer;
         private float _spawnInterval;
@@ -45,8 +45,6 @@ namespace Spawn
 
         private void SpawnObstacle()
         {
-            var index = MathUtilities.PickOne(obstacleProbabilities.Select(x => x.probability).ToArray());
-            var obstaclePrefab = obstacleProbabilities[index].prefab;
             var spawnPos = transform.position;
             
             Instantiate(obstaclePrefab, spawnPos, Quaternion.identity);
