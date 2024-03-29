@@ -7,7 +7,7 @@ namespace Obstacle
     {
         private enum Direction
         {
-            Left,
+            Left, 
             Right
         }
         
@@ -17,12 +17,19 @@ namespace Obstacle
         private void Update()
         {
             Move();
+            Destroy();
         }
 
         private void Move()
         {
             var movementDirection = direction == Direction.Left ? Vector3.left : Vector3.right;
             transform.MoveBy(movementDirection * (speed * Time.deltaTime));
+        }
+
+        private void Destroy()
+        {
+            if (transform.position.x is >= 20 or <= -20)
+                Destroy(gameObject);
         }
     }
 }
