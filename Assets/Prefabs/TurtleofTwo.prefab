@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1785010414306964477}
   - component: {fileID: 4779921152972948408}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TurtleofTwo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,6 +59,10 @@ PrefabInstance:
     - target: {fileID: 3963067973866305131, guid: 0caa502b01c860a4fb9bd5657c901382, type: 3}
       propertyPath: m_Name
       value: Turtle_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3963067973866305131, guid: 0caa502b01c860a4fb9bd5657c901382, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5419297380991095433, guid: 0caa502b01c860a4fb9bd5657c901382, type: 3}
       propertyPath: m_LocalPosition.x
@@ -121,6 +125,10 @@ PrefabInstance:
     - target: {fileID: 3963067973866305131, guid: 0caa502b01c860a4fb9bd5657c901382, type: 3}
       propertyPath: m_Name
       value: Turtle_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 3963067973866305131, guid: 0caa502b01c860a4fb9bd5657c901382, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5419297380991095433, guid: 0caa502b01c860a4fb9bd5657c901382, type: 3}
       propertyPath: m_LocalPosition.x

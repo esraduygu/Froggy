@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using Utilities;
@@ -6,6 +7,8 @@ namespace Player
 {
     public class Frogger : MonoBehaviour
     {
+        public Action OnLeap;
+        
         [SerializeField] private PlayerSpriteController playerSpriteController;
         [SerializeField] private float xPos;
         [SerializeField] private float minY;
@@ -52,6 +55,12 @@ namespace Player
         private void StartLeap(Vector3 direction)
         {
             var destination = transform.position + direction;
+
+            // var platform = Physics2D.OverlapBox(destination, Vector2.zero, 0f, LayerMask.GetMask($"Platform"));
+            //
+            // transform.SetParent(platform != null ? platform.transform : null);
+
+            OnLeap?.Invoke();
             StartCoroutine(Leap(destination));
         }
         
