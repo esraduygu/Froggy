@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Player
 {
-    public class PlayerSpriteController : MonoBehaviour
+    public class PlayerAnimator : MonoBehaviour
     {
         public enum SpriteType
         {
