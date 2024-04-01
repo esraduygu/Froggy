@@ -16,9 +16,10 @@ GameObject:
   - component: {fileID: 7562579009042729571}
   - component: {fileID: 7911438260168941158}
   - component: {fileID: 2497165627894297229}
+  - component: {fileID: 4890668822672955466}
   m_Layer: 0
   m_Name: Frogger
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51,8 +52,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {x: 0, y: 0, z: 0}
-  playerAnimator: {fileID: 0}
-  playerState: {fileID: 0}
+  playerAnimator: {fileID: 4890668822672955466}
+  playerState: {fileID: 7562579009042729571}
   xPos: 6
   minY: -6
   maxY: 6
@@ -140,7 +141,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.001402311, y: 0.03000474}
+  m_Offset: {x: -0.012051463, y: 0.033141136}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -151,7 +152,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.3799615, y: 0.45162725}
+  m_Size: {x: 0.7348677, y: 0.60832787}
   m_EdgeRadius: 0
 --- !u!50 &243897910584748634
 Rigidbody2D:
@@ -192,9 +193,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b997eb4829fd4354991e5eed1add47eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAnimator: {fileID: 0}
+  playerAnimator: {fileID: 4890668822672955466}
   playerMovement: {fileID: 5160621913908483085}
-  inputHandler: {fileID: 0}
+  inputHandler: {fileID: 2497165627894297229}
 --- !u!114 &7911438260168941158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,3 +223,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 5160621913908483085}
+--- !u!114 &4890668822672955466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4005529651289352466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd207f8688b27b344b23844162790db1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 2439122260691079189}
+  sprites:
+  - {fileID: 21300000, guid: d7bfdc9000f9af84688dc929d7d5ffce, type: 3}
+  - {fileID: 21300000, guid: 280318338a6261d4eac32f61ff2136db, type: 3}
+  - {fileID: 21300000, guid: 7a24b845f4887854bb2f7486f170aa7d, type: 3}

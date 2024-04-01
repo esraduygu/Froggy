@@ -32,8 +32,8 @@ namespace Frogger
             switch (states)
             {
                 case PlayerStates.Dead:
-                    playerAnimator.SetSprite(PlayerAnimator.SpriteType.Dead);
                     playerMovement.StopAllCoroutines();
+                    playerAnimator.SetSprite(PlayerAnimator.SpriteType.Dead);
                     playerMovement.transform.rotation = Quaternion.identity;
                     inputHandler.enabled = false;
                     break;
