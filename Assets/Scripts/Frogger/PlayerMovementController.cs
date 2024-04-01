@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-namespace Player
+namespace Frogger
 {
     public class PlayerMovementController : MonoBehaviour
     {
@@ -10,6 +10,7 @@ namespace Player
         public Vector3 destination;
 
         [SerializeField] private PlayerAnimator playerAnimator;
+        [SerializeField] private PlayerState playerState;
         [SerializeField] private float xPos;
         [SerializeField] private float minY;
         [SerializeField] private float maxY;
@@ -20,6 +21,7 @@ namespace Player
 
             OnLeap?.Invoke();
             StartCoroutine(Leap(destination));
+            playerState.State = PlayerState.PlayerStates.Alive;
         }
         
         private IEnumerator Leap(Vector3 leapDestination)

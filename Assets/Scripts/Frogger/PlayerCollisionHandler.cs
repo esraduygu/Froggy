@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Player
+namespace Frogger
 {
     public class PlayerCollisionHandler : MonoBehaviour
     {
@@ -40,6 +40,10 @@ namespace Player
 
             if (obstacle != null)
                 playerState.State = PlayerState.PlayerStates.Dead;
+            else
+            {
+                playerState.State = PlayerState.PlayerStates.Alive;
+            }
 
         }
         

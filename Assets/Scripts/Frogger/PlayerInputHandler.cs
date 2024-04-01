@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Utilities;
 
-namespace Player
+namespace Frogger
 {
     public class PlayerInputHandler : MonoBehaviour
     {

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Player
+namespace Frogger
 {
     public class PlayerAnimator : MonoBehaviour
     {
