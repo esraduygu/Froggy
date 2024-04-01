@@ -37,8 +37,9 @@ namespace Frogger
         private void CheckObstacle()
         {
             var obstacle = Physics2D.OverlapBox(playerMovementController.destination,Vector2.zero,0f, _obstacleLayerMask);
+            var platform = Physics2D.OverlapBox(playerMovementController.destination,Vector2.zero,0f, _platformLayerMask);
 
-            if (obstacle != null)
+            if (obstacle != null && platform == null)
                 playerState.State = PlayerState.PlayerStates.Dead;
             else
             {
