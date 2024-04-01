@@ -1632,6 +1632,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Frogger
       objectReference: {fileID: 0}
+    - target: {fileID: 4005529651289352466, guid: 5bbfeedbe6e64b843a38aeb6f45f2964, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 5160621913908483085, guid: 5bbfeedbe6e64b843a38aeb6f45f2964, type: 3}
       propertyPath: playerState
       value: 
