@@ -52,6 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destination: {x: 0, y: 0, z: 0}
   playerAnimator: {fileID: 0}
+  playerState: {fileID: 0}
   xPos: 6
   minY: -6
   maxY: 6
@@ -139,7 +140,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.001402311, y: 0.03000474}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -150,7 +151,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.3799615, y: 0.45162725}
   m_EdgeRadius: 0
 --- !u!50 &243897910584748634
 Rigidbody2D:
@@ -193,6 +194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerAnimator: {fileID: 0}
   playerMovement: {fileID: 5160621913908483085}
+  inputHandler: {fileID: 0}
 --- !u!114 &7911438260168941158
 MonoBehaviour:
   m_ObjectHideFlags: 0

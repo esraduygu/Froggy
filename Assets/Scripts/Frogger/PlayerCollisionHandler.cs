@@ -39,8 +39,10 @@ namespace Frogger
             var obstacle = Physics2D.OverlapBox(playerMovementController.destination,Vector2.zero,0f, _obstacleLayerMask);
             var platform = Physics2D.OverlapBox(playerMovementController.destination,Vector2.zero,0f, _platformLayerMask);
 
-            if (obstacle != null && platform == null)
+            if (obstacle != null && platform.transform == null)
+            {
                 playerState.State = PlayerState.PlayerStates.Dead;
+            }
             else
             {
                 playerState.State = PlayerState.PlayerStates.Alive;

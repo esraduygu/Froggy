@@ -217,12 +217,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnIntervals:
-  - interval: 0.4
-    probability: 0.2
-  - interval: 0.5
-    probability: 0.3
-  - interval: 0.6
-    probability: 0.5
+  - interval: 2
+    probability: 0.4
+  - interval: 1.5
+    probability: 0.6
   obstaclePrefab: {fileID: 8026698481064852009, guid: f02f2c076fa5ef748943a2ec488c477a, type: 3}
 --- !u!1 &133760601
 GameObject:
@@ -254,12 +252,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnIntervals:
-  - interval: 0.4
-    probability: 0.2
-  - interval: 0.5
-    probability: 0.3
-  - interval: 0.6
-    probability: 0.5
+  - interval: 2.5
+    probability: 0.025
+  - interval: 2
+    probability: 0.275
+  - interval: 1.5
+    probability: 0.7
   obstaclePrefab: {fileID: 1101059168509245464, guid: cdaf8d33e370ecc4e87ced7be0d5e528, type: 3}
 --- !u!4 &133760603
 Transform:
@@ -437,7 +435,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &459251365
 Transform:
   m_ObjectHideFlags: 0
@@ -874,11 +872,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnIntervals:
-  - interval: 0.4
+  - interval: 3
     probability: 0.2
-  - interval: 0.5
+  - interval: 2.5
     probability: 0.3
-  - interval: 0.6
+  - interval: 2
     probability: 0.5
   obstaclePrefab: {fileID: 1056543041003975375, guid: 22cebfac0b86a3d4a91c9cdd4fcc7101, type: 3}
 --- !u!1 &905786626
@@ -926,12 +924,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnIntervals:
-  - interval: 0.4
-    probability: 0.2
-  - interval: 0.5
-    probability: 0.3
-  - interval: 0.6
-    probability: 0.5
+  - interval: 4.5
+    probability: 0.4
+  - interval: 4
+    probability: 0.6
   obstaclePrefab: {fileID: 2683656398037970335, guid: 53a9acab6755a354bbb53865212758d3, type: 3}
 --- !u!1 &1048505338
 GameObject:
@@ -1104,11 +1100,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnIntervals:
-  - interval: 0.4
+  - interval: 4
     probability: 0.2
-  - interval: 0.5
+  - interval: 3.5
     probability: 0.3
-  - interval: 0.6
+  - interval: 3
     probability: 0.5
   obstaclePrefab: {fileID: 2898799197179985617, guid: d54ba1c988deb7b4e8449efd6824e8d1, type: 3}
 --- !u!4 &1145947016
@@ -1213,11 +1209,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnIntervals:
-  - interval: 0.4
+  - interval: 2
     probability: 0.2
-  - interval: 0.5
+  - interval: 1.5
     probability: 0.3
-  - interval: 0.6
+  - interval: 1
     probability: 0.5
   obstaclePrefab: {fileID: 2795905012595346281, guid: 3df29bb68c76eba4fa4438fa79407073, type: 3}
 --- !u!4 &1501063434
@@ -1316,11 +1312,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnIntervals:
-  - interval: 0.4
+  - interval: 3
     probability: 0.2
-  - interval: 0.5
+  - interval: 3.5
     probability: 0.3
-  - interval: 0.6
+  - interval: 4
     probability: 0.5
   obstaclePrefab: {fileID: 311966447623345857, guid: 90dcaaf3f00e1474586f65ef0efa45bd, type: 3}
 --- !u!1 &1769230841
@@ -1353,11 +1349,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnIntervals:
-  - interval: 0.4
+  - interval: 2
     probability: 0.2
-  - interval: 0.5
+  - interval: 3
     probability: 0.3
-  - interval: 0.6
+  - interval: 2.5
     probability: 0.5
   obstaclePrefab: {fileID: 597436663421277484, guid: c4c2bf623aa2fa34c9a2d38e8c4a8a9e, type: 3}
 --- !u!4 &1769230843
@@ -1489,11 +1485,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnIntervals:
-  - interval: 0.4
+  - interval: 2.2
     probability: 0.2
-  - interval: 0.5
+  - interval: 2
     probability: 0.3
-  - interval: 0.6
+  - interval: 1.5
     probability: 0.5
   obstaclePrefab: {fileID: 8529556184711104061, guid: d04cf677bb49c0444b319962cb0b82e8, type: 3}
 --- !u!4 &1818909212
@@ -1556,11 +1552,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnIntervals:
-  - interval: 0.4
+  - interval: 3.5
     probability: 0.2
-  - interval: 0.5
+  - interval: 3
     probability: 0.3
-  - interval: 0.6
+  - interval: 2.5
     probability: 0.5
   obstaclePrefab: {fileID: 2923623772536463444, guid: 8673d5a47ae30ab4db8ff39548cd88b5, type: 3}
 --- !u!1001 &2139606023
