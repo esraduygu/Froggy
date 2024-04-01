@@ -19,9 +19,8 @@ namespace Frogger
         {
             destination = transform.position + direction;
 
-            OnLeap?.Invoke();
             StartCoroutine(Leap(destination));
-            playerState.State = PlayerState.PlayerStates.Alive;
+            OnLeap?.Invoke();
         }
         
         private IEnumerator Leap(Vector3 leapDestination)

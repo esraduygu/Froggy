@@ -6,7 +6,7 @@ namespace Frogger
     {
         [SerializeField] private PlayerMovementController playerMovementController;
         [SerializeField] private PlayerState playerState;
-        
+
         private int _platformLayerMask;
         private int _obstacleLayerMask;
 
@@ -14,45 +14,49 @@ namespace Frogger
         {
             _platformLayerMask = LayerMask.GetMask("Platform");
             _obstacleLayerMask = LayerMask.GetMask("Obstacle");
-
         }
 
         private void OnEnable()
         {
             playerMovementController.OnLeap += CheckPlatform;
-        }
-
-        private void Update()
-        {
-            CheckObstacle();
+            playerMovementController.OnLeap += CheckObstacle;
         }
 
         private void CheckPlatform()
         {
-            var platform = Physics2D.OverlapBox(playerMovementController.destination,Vector2.zero,0f, _platformLayerMask);
-        
+            var platform = Physics2D.OverlapBox(playerMovementController.destination, Vector2.zero, 0f,
+                _platformLayerMask);
+
             playerMovementController.transform.SetParent(platform != null ? platform.transform : null);
         }
 
         private void CheckObstacle()
         {
-            var obstacle = Physics2D.OverlapBox(playerMovementController.destination,Vector2.zero,0f, _obstacleLayerMask);
-            var platform = Physics2D.OverlapBox(playerMovementController.destination,Vector2.zero,0f, _platformLayerMask);
+            var obstacle = Physics2D.OverlapBox(playerMovementController.destination, Vector2.zero, 0f,
+                _obstacleLayerMask);
+            var platform = Physics2D.OverlapBox(playerMovementController.destination, Vector2.zero, 0f,
+                _platformLayerMask);
 
-            if (obstacle != null && platform.transform == null)
+            if (platform == null && obstacle != null)
             {
+                transform.position = playerMovementController.destination;
                 playerState.State = PlayerState.PlayerStates.Dead;
             }
-            else
-            {
-                playerState.State = PlayerState.PlayerStates.Alive;
-            }
-
         }
         
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            var hitObstacle = other.gameObject.layer == LayerMask.NameToLayer("Obstacle");
+            var onPlatform = transform.parent != null;
+
+            if (!enabled || !hitObstacle || onPlatform) return;
+            playerState.State = PlayerState.PlayerStates.Dead;
+        }
+
         private void OnDisable()
         {
             playerMovementController.OnLeap -= CheckPlatform;
+            playerMovementController.OnLeap -= CheckObstacle;
         }
     }
 }
