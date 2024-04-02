@@ -9,16 +9,15 @@ namespace Frogger
         public Action OnLeapStart;
         public Action OnLeapEnd;
         
-        public Vector3 destination;
-
-        [SerializeField] private PlayerAnimator playerAnimator;
+        // public Vector3 destination;
+        
         [SerializeField] private float xPos;
         [SerializeField] private float minY;
         [SerializeField] private float maxY;
         
         public void StartLeap(Vector3 direction)
         {
-            destination = transform.position + direction;
+            var destination = transform.position + direction;
 
             var rotation = GetRotationForDirection(direction);
 

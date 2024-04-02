@@ -11,7 +11,8 @@ namespace Frogger
         
         public enum PlayerStates
         {
-            Alive,
+            Idle,
+            Leaping,
             Dead
         }
 

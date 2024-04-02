@@ -25,13 +25,15 @@ namespace Frogger
         
         private void OnLeapStart()
         {
+            playerState.State = PlayerState.PlayerStates.Leaping;
             animator.SetSprite(PlayerAnimator.SpriteType.Leap);
-            HandleCollisions();
         }
 
         private void OnLeapEnd()
         {
+            playerState.State = PlayerState.PlayerStates.Idle;
             animator.SetSprite(PlayerAnimator.SpriteType.Idle);
+            HandleCollisions();
         }
 
         private void OnDirectionInput(Vector2 direction)
@@ -41,21 +43,21 @@ namespace Frogger
         
         private void HandleIdleCollisions()
         {
-            if (transform.parent != null) return;
+            if (playerState.State != PlayerState.PlayerStates.Idle || transform.parent != null) return;
             HandleObstacleCollision(transform.position);
         }
 
         private void HandleCollisions()
         {
-            var destination = movementController.destination;
-            var platform = collisionHandler.CheckPlatform(destination);
+            var position = transform.position;
+            var platform = collisionHandler.CheckPlatform(position);
             
             if (platform != null)
                 movementController.SetPlatform(platform.transform);
             else
             {
                 movementController.SetPlatform(null);
-                HandleObstacleCollision(destination);
+                HandleObstacleCollision(position);
             }
         }
 
