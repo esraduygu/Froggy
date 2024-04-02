@@ -6,7 +6,8 @@ namespace Frogger
 {
     public class PlayerMovementController : MonoBehaviour
     {
-        public Action OnLeap;
+        public Action OnLeapStart;
+        public Action OnLeapEnd;
         
         public Vector3 destination;
 
@@ -24,7 +25,6 @@ namespace Frogger
             transform.rotation = Quaternion.Euler(0f, 0f, rotation);
 
             StartCoroutine(Leap(destination));
-            OnLeap?.Invoke();
         }
 
         private float GetRotationForDirection(Vector3 direction)
@@ -47,7 +47,7 @@ namespace Frogger
             var elapsed = 0f;
             const float duration = 0.125f;
             
-            playerAnimator.SetSprite(PlayerAnimator.SpriteType.Leap);
+            OnLeapStart?.Invoke();
             
             while (elapsed < duration)
             {
@@ -58,8 +58,7 @@ namespace Frogger
             }
             
             SetPosition(leapDestination);
-            playerAnimator.SetSprite(PlayerAnimator.SpriteType.Idle);
-         
+            OnLeapEnd?.Invoke();
         }
         
         private void SetPosition(Vector3 newPosition)

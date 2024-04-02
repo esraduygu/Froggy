@@ -12,26 +12,33 @@ namespace Frogger
 
         private void OnEnable()
         {
-            inputHandler.OnDirectionInput += OnDirectionInput;
-            movementController.OnLeap += OnLeap;
+            movementController.OnLeapStart += OnLeapStart;
+            movementController.OnLeapEnd += OnLeapEnd;
+            inputHandler.OnDirectionInput += OnDirectionInput; 
             playerState.OnPlayerStateChange += OnPlayerStateChange;
-        }
-        
-        private void OnDirectionInput(Vector2 direction)
-        {
-            movementController.StartLeap(direction);
-        }
-
-        private void OnLeap()
-        {
-            HandleCollisions();
         }
 
         private void Update()
         {
             HandleIdleCollisions();
         }
+        
+        private void OnLeapStart()
+        {
+            animator.SetSprite(PlayerAnimator.SpriteType.Leap);
+            HandleCollisions();
+        }
 
+        private void OnLeapEnd()
+        {
+            animator.SetSprite(PlayerAnimator.SpriteType.Idle);
+        }
+
+        private void OnDirectionInput(Vector2 direction)
+        {
+            movementController.StartLeap(direction);
+        }
+        
         private void HandleIdleCollisions()
         {
             if (transform.parent != null) return;
@@ -74,8 +81,9 @@ namespace Frogger
 
         private void OnDisable()
         {
+            movementController.OnLeapStart -= OnLeapStart;
+            movementController.OnLeapEnd -= OnLeapEnd;
             inputHandler.OnDirectionInput -= OnDirectionInput;
-            movementController.OnLeap -= OnLeap;
             playerState.OnPlayerStateChange -= OnPlayerStateChange;
         }
     }
