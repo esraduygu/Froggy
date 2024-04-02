@@ -70,5 +70,10 @@ namespace Frogger
         
             transform.position = newPosition;
         }
+
+        public void SetPlatform(Transform platform)
+        {
+            transform.SetParent(platform);
+        }
     }
 }

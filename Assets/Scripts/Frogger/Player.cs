@@ -24,8 +24,39 @@ namespace Frogger
 
         private void OnLeap()
         {
-            collisionHandler.CheckPlatform(movementController.destination);
-            collisionHandler.CheckObstacle(movementController.destination, playerState);
+            HandleCollisions();
+        }
+
+        private void Update()
+        {
+            HandleIdleCollisions();
+        }
+
+        private void HandleIdleCollisions()
+        {
+            if (transform.parent != null) return;
+            HandleObstacleCollision(transform.position);
+        }
+
+        private void HandleCollisions()
+        {
+            var destination = movementController.destination;
+            var platform = collisionHandler.CheckPlatform(destination);
+            
+            if (platform != null)
+                movementController.SetPlatform(platform.transform);
+            else
+            {
+                movementController.SetPlatform(null);
+                HandleObstacleCollision(destination);
+            }
+        }
+
+        private void HandleObstacleCollision(Vector3 destination)
+        {
+            if (!collisionHandler.CheckObstacle(destination)) return;
+            transform.position = destination;
+            playerState.State = PlayerState.PlayerStates.Dead;
         }
 
         private void OnPlayerStateChange(PlayerState.PlayerStates newState)
