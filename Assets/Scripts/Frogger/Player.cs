@@ -9,13 +9,25 @@ namespace Frogger
         [SerializeField] private PlayerCollisionHandler collisionHandler;
         [SerializeField] private PlayerAnimator animator;
         [SerializeField] private PlayerState playerState;
+        private Vector3 _defaultPos;
+
+        //TODO: When you hit the walls of the homes, you die.
+        //TODO: When you hit the homeFrog you die.
+        //TODO: Timer
+        //TODO: Lives
+        //TODO: Scoring
+        //TODO: GameState
+
+        private void Awake()
+        {
+            _defaultPos = transform.position;
+        }
 
         private void OnEnable()
         {
             movementController.OnLeapStart += OnLeapStart;
             movementController.OnLeapEnd += OnLeapEnd;
             inputHandler.OnDirectionInput += OnDirectionInput; 
-            playerState.OnPlayerStateChange += OnPlayerStateChange;
         }
 
         private void Update()
@@ -65,20 +77,25 @@ namespace Frogger
         {
             if (!collisionHandler.CheckObstacle(destination)) return;
             transform.position = destination;
-            playerState.State = PlayerState.PlayerStates.Dead;
+            Die();
+        }
+        
+        private void Respawn()
+        {
+            StopAllCoroutines();
+            transform.SetPositionAndRotation(_defaultPos, Quaternion.identity);
+            animator.SetSprite(PlayerAnimator.SpriteType.Idle);
+            inputHandler.enabled = true;
         }
 
-        private void OnPlayerStateChange(PlayerState.PlayerStates newState)
+        private void Die()
         {
-            switch (newState)
-            {
-                case PlayerState.PlayerStates.Dead:
-                    movementController.StopAllCoroutines();
-                    animator.SetSprite(PlayerAnimator.SpriteType.Dead);
-                    movementController.transform.rotation = Quaternion.identity;
-                    inputHandler.enabled = false;
-                    break;
-            }
+            movementController.StopAllCoroutines();
+            animator.SetSprite(PlayerAnimator.SpriteType.Dead);
+            transform.rotation = Quaternion.identity;
+            inputHandler.enabled = false;
+
+            playerState.State = PlayerState.PlayerStates.Dead;
         }
 
         private void OnDisable()
@@ -86,7 +103,6 @@ namespace Frogger
             movementController.OnLeapStart -= OnLeapStart;
             movementController.OnLeapEnd -= OnLeapEnd;
             inputHandler.OnDirectionInput -= OnDirectionInput;
-            playerState.OnPlayerStateChange -= OnPlayerStateChange;
         }
     }
 }

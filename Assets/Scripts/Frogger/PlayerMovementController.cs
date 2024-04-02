@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using Utilities;
 
 namespace Frogger
 {
@@ -8,8 +9,6 @@ namespace Frogger
     {
         public Action OnLeapStart;
         public Action OnLeapEnd;
-        
-        // public Vector3 destination;
         
         [SerializeField] private float xPos;
         [SerializeField] private float minY;
@@ -22,16 +21,22 @@ namespace Frogger
             var rotation = GetRotationForDirection(direction);
 
             transform.rotation = Quaternion.Euler(0f, 0f, rotation);
+            
 
             StartCoroutine(Leap(destination));
         }
 
+        public void SetPlatform(Transform platform)
+        {
+            transform.SetParent(platform);
+        }
+        
         private float GetRotationForDirection(Vector3 direction)
         {
             if (direction == Vector3.up)
                 return 0f;
             if (direction == Vector3.down)
-                return 180f; 
+                return 180f;
             if (direction == Vector3.left)
                 return 90f;
             if (direction == Vector3.right)
@@ -67,11 +72,6 @@ namespace Frogger
             newPosition = new Vector3(clampedX, clampedY, 0);
         
             transform.position = newPosition;
-        }
-
-        public void SetPlatform(Transform platform)
-        {
-            transform.SetParent(platform);
         }
     }
 }
