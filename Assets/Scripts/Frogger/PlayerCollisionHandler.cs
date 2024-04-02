@@ -4,9 +4,8 @@ namespace Frogger
 {
     public class PlayerCollisionHandler : MonoBehaviour
     {
-        [SerializeField] private PlayerMovementController playerMovementController;
-        [SerializeField] private PlayerState playerState;
-
+        [SerializeField] private PlayerState player;
+        
         private int _platformLayerMask;
         private int _obstacleLayerMask;
 
@@ -15,30 +14,24 @@ namespace Frogger
             _platformLayerMask = LayerMask.GetMask("Platform");
             _obstacleLayerMask = LayerMask.GetMask("Obstacle");
         }
-
-        private void OnEnable()
+        
+        public void CheckPlatform(Vector3 destination)
         {
-            playerMovementController.OnLeap += CheckPlatform;
-            playerMovementController.OnLeap += CheckObstacle;
-        }
-
-        private void CheckPlatform()
-        {
-            var platform = Physics2D.OverlapBox(playerMovementController.destination, Vector2.zero, 0f,
+            var platform = Physics2D.OverlapBox(destination, Vector2.zero, 0f,
                 _platformLayerMask);
 
-            playerMovementController.transform.SetParent(platform != null ? platform.transform : null);
+            transform.SetParent(platform != null ? platform.transform : null);
         }
 
-        private void CheckObstacle()
+        public void CheckObstacle(Vector3 destination, PlayerState playerState)
         {
-            var obstacle = Physics2D.OverlapBox(playerMovementController.destination, Vector2.zero, 0f,
+            var obstacle = Physics2D.OverlapBox(destination, Vector2.zero, 0f,
                 _obstacleLayerMask);
-            var platform = Physics2D.OverlapBox(playerMovementController.destination, Vector2.zero, 0f,
+            var platform = Physics2D.OverlapBox(destination, Vector2.zero, 0f,
                 _platformLayerMask);
 
             if (platform != null || obstacle == null) return;
-            transform.position = playerMovementController.destination;
+            transform.position = destination;
             playerState.State = PlayerState.PlayerStates.Dead;
         }
         
@@ -48,13 +41,8 @@ namespace Frogger
             var onPlatform = transform.parent != null;
 
             if (!enabled || !hitObstacle || onPlatform) return;
-            playerState.State = PlayerState.PlayerStates.Dead;
+            player.State = PlayerState.PlayerStates.Dead;
         }
-
-        private void OnDisable()
-        {
-            playerMovementController.OnLeap -= CheckPlatform;
-            playerMovementController.OnLeap -= CheckObstacle;
-        }
+        
     }
 }

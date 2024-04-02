@@ -1,14 +1,14 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Frogger
 {
     public class PlayerState : MonoBehaviour
     {
+        public Action<PlayerStates> OnPlayerStateChange;
+        
         private PlayerStates _state;
-        [SerializeField] private PlayerAnimator playerAnimator;
-        [SerializeField] private PlayerMovementController playerMovement;
-        [SerializeField] private PlayerInputHandler inputHandler;
-
+        
         public enum PlayerStates
         {
             Alive,
@@ -26,19 +26,12 @@ namespace Frogger
                 OnStateChange(value);
             }
         }
-
-        private void OnStateChange(PlayerStates states)
+        
+        private void OnStateChange(PlayerStates state)
         {
-            switch (states)
-            {
-                case PlayerStates.Dead:
-                    playerMovement.StopAllCoroutines();
-                    playerAnimator.SetSprite(PlayerAnimator.SpriteType.Dead);
-                    playerMovement.transform.rotation = Quaternion.identity;
-                    inputHandler.enabled = false;
-                    break;
-                    
-            }
+            _state = state;
+            
+            OnPlayerStateChange?.Invoke(state);
         }
     }
 }

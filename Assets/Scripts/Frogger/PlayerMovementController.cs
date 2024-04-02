@@ -7,10 +7,10 @@ namespace Frogger
     public class PlayerMovementController : MonoBehaviour
     {
         public Action OnLeap;
+        
         public Vector3 destination;
 
         [SerializeField] private PlayerAnimator playerAnimator;
-        [SerializeField] private PlayerState playerState;
         [SerializeField] private float xPos;
         [SerializeField] private float minY;
         [SerializeField] private float maxY;
@@ -59,6 +59,7 @@ namespace Frogger
             
             SetPosition(leapDestination);
             playerAnimator.SetSprite(PlayerAnimator.SpriteType.Idle);
+         
         }
         
         private void SetPosition(Vector3 newPosition)
