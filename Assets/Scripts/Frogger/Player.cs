@@ -9,6 +9,7 @@ namespace Frogger
         [SerializeField] private PlayerCollisionHandler collisionHandler;
         [SerializeField] private PlayerAnimator animator;
         [SerializeField] private PlayerState playerState;
+        
         private Vector3 _defaultPos;
 
         //TODO: When you hit the walls of the homes, you die.
@@ -27,9 +28,9 @@ namespace Frogger
         {
             movementController.OnLeapStart += OnLeapStart;
             movementController.OnLeapEnd += OnLeapEnd;
-            inputHandler.OnDirectionInput += OnDirectionInput; 
+            inputHandler.OnDirectionInput += OnDirectionInput;
         }
-
+        
         private void Update()
         {
             HandleIdleCollisions();
@@ -62,6 +63,8 @@ namespace Frogger
         private void HandleCollisions()
         {
             var position = transform.position;
+            if (HandleHomeCollision(position)) return;
+            
             var platform = collisionHandler.CheckPlatform(position);
             
             if (platform != null)
@@ -79,10 +82,23 @@ namespace Frogger
             transform.position = destination;
             Die();
         }
+
+        private bool HandleHomeCollision(Vector3 destination)
+        {
+            var home = collisionHandler.CheckHome(destination);
+            if (home == null) return false;
+
+            home.GetComponent<Home>().enabled = true;
+            
+            Respawn();
+            
+            return true;
+        }
         
         private void Respawn()
         {
             StopAllCoroutines();
+            movementController.SetPlatform(null);
             transform.SetPositionAndRotation(_defaultPos, Quaternion.identity);
             animator.SetSprite(PlayerAnimator.SpriteType.Idle);
             inputHandler.enabled = true;
@@ -96,6 +112,8 @@ namespace Frogger
             inputHandler.enabled = false;
 
             playerState.State = PlayerState.PlayerStates.Dead;
+            
+            Invoke(nameof(Respawn), 3);
         }
 
         private void OnDisable()
