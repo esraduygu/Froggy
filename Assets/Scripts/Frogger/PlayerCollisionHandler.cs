@@ -37,11 +37,9 @@ namespace Frogger
             var platform = Physics2D.OverlapBox(playerMovementController.destination, Vector2.zero, 0f,
                 _platformLayerMask);
 
-            if (platform == null && obstacle != null)
-            {
-                transform.position = playerMovementController.destination;
-                playerState.State = PlayerState.PlayerStates.Dead;
-            }
+            if (platform != null || obstacle == null) return;
+            transform.position = playerMovementController.destination;
+            playerState.State = PlayerState.PlayerStates.Dead;
         }
         
         private void OnTriggerEnter2D(Collider2D other)

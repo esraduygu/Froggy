@@ -9,10 +9,5 @@ namespace Utilities
         {
             transform.position += distance;
         }
-
-        public static void SetRotation(this Transform transform, Vector3 euler)
-        {
-            transform.rotation = Quaternion.Euler(euler);
-        }
     }
 }

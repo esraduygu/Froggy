@@ -1,12 +1,12 @@
-﻿using UnityEngine;
-using Utilities;
+﻿using System;
+using UnityEngine;
 
 namespace Frogger
 {
     public class PlayerInputHandler : MonoBehaviour
     {
-        [SerializeField] private PlayerMovementController playerMovement;
-
+        public Action<Vector2> OnDirectionInput;
+        
         private void Update()
         {
             HandleInput();
@@ -16,23 +16,19 @@ namespace Frogger
         {
             if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
             {
-                playerMovement.StartLeap(Vector3.up);
-                transform.SetRotation(new Vector3(0f,0f,0f));
+                OnDirectionInput?.Invoke(Vector2.up);
             }
             else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
             {
-                playerMovement.StartLeap(Vector3.down);
-                transform.SetRotation(new Vector3(0f,0f,180f));
+                OnDirectionInput?.Invoke(Vector2.down);
             }
             else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                playerMovement.StartLeap(Vector3.left);
-                transform.SetRotation(new Vector3(0f,0f,90f));
+                OnDirectionInput?.Invoke(Vector2.left);
             }
             else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
             {
-                playerMovement.StartLeap(Vector3.right);
-                transform.SetRotation(new Vector3(0f,0f,-90f));                
+                OnDirectionInput?.Invoke(Vector2.right);               
             }
         }
     }

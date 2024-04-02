@@ -19,10 +19,28 @@ namespace Frogger
         {
             destination = transform.position + direction;
 
+            var rotation = GetRotationForDirection(direction);
+
+            transform.rotation = Quaternion.Euler(0f, 0f, rotation);
+
             StartCoroutine(Leap(destination));
             OnLeap?.Invoke();
         }
-        
+
+        private float GetRotationForDirection(Vector3 direction)
+        {
+            if (direction == Vector3.up)
+                return 0f;
+            if (direction == Vector3.down)
+                return 180f; 
+            if (direction == Vector3.left)
+                return 90f;
+            if (direction == Vector3.right)
+                return -90f;
+
+            return 0;
+        }
+
         private IEnumerator Leap(Vector3 leapDestination)
         {
             var startPosition = transform.position;
