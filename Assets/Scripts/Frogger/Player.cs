@@ -1,4 +1,7 @@
+using System;
+using Core;
 using UnityEngine;
+using Utilities;
 
 namespace Frogger
 {
@@ -91,13 +94,13 @@ namespace Frogger
             Die();
         }
 
-        private bool HandleHomeCollision(Vector3 destination)
+        public bool HandleHomeCollision(Vector3 destination)
         {
             var home = collisionHandler.CheckHome(destination);
             if (home == null) 
                 return false;
 
-            home.GetComponent<Home>().enabled = true;
+            home.SetOccupied(true);
             
             Respawn();
             
@@ -124,7 +127,7 @@ namespace Frogger
 
             playerState.State = PlayerState.PlayerStates.Dead;
             
-            Invoke(nameof(Respawn), 3);
+            _ = new Timer(TimeSpan.FromSeconds(3), Respawn);
         }
 
         private void OnDisable()

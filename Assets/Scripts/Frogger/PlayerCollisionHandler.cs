@@ -1,3 +1,4 @@
+using Core;
 using UnityEngine;
 
 namespace Frogger
@@ -21,10 +22,15 @@ namespace Frogger
                 _platformLayerMask);
         }
         
-        public Collider2D CheckHome(Vector3 destination)
+        public Home CheckHome(Vector3 destination)
         {
-            return Physics2D.OverlapBox(destination, Vector2.zero, 0f,
+            var hit = Physics2D.OverlapBox(destination, Vector2.zero, 0f,
                 _homeLayerMask);
+
+            if (hit == null)
+                return null;
+            
+            return !hit.TryGetComponent<Home>(out var home) ? null : home;
         }
         
         public bool CheckObstacle(Vector3 destination)
