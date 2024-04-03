@@ -1,5 +1,7 @@
-﻿using Frogger;
+﻿using System;
+using Frogger;
 using UnityEngine;
+using Utilities;
 
 namespace Core
 {
@@ -7,12 +9,12 @@ namespace Core
     {
         [SerializeField] private UIManager uiManager;
         [SerializeField] private HomeManager homeManager;
+        [SerializeField] private Player player;
         
-        // timer based points timer * 20;
-
         private int _score;
-        private int _time;
+        private int _timeLeft;
 
+        // timer based points timer * 20;
         private void OnEnable()
         {
             homeManager.OnAllHomesCleared += AllHomesCleared;
@@ -23,13 +25,14 @@ namespace Core
         {
             _score = 0;
             uiManager.UpdateScoreText(_score);
+            StartCountdown();
         }
 
         private void AllHomesCleared()
         {
            IncrementScore(1000);
         }
-
+        
         private void HomeOccupied(Home home)
         {
             IncrementScore(50);
@@ -41,6 +44,27 @@ namespace Core
             uiManager.UpdateScoreText(_score);
         }
 
+        private void StartCountdown()
+        {
+            _timeLeft = 30;
+            uiManager.UpdateTimerText(_timeLeft);
+            _ = new Timer(TimeSpan.FromSeconds(1), OnCountdownTick);
+        }
+
+        private void OnCountdownTick()
+        {
+            _timeLeft--;
+            uiManager.UpdateTimerText(_timeLeft);
+            
+            if (_timeLeft <= 0)
+            {
+                player.Die();
+                return;
+            }
+            
+            _ = new Timer(TimeSpan.FromSeconds(1), OnCountdownTick);
+        }
+        
         private void OnDisable()
         {
             homeManager.OnAllHomesCleared -= AllHomesCleared;

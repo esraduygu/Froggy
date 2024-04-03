@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using UnityEngine;
 
 namespace Core
@@ -7,10 +6,9 @@ namespace Core
     public class Home : MonoBehaviour
     {
         public Action<Home, bool> OnOccupationChange;
+        public bool IsOccupied { get; private set; }
         
         [SerializeField] private GameObject homeFrog;
-
-        public bool IsOccupied { get; private set; }
         
         public void SetOccupied(bool occupied)
         {

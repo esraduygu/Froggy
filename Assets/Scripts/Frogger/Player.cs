@@ -1,5 +1,4 @@
 using System;
-using Core;
 using UnityEngine;
 using Utilities;
 
@@ -14,13 +13,6 @@ namespace Frogger
         [SerializeField] private PlayerState playerState;
         
         private Vector3 _defaultPos;
-
-        //TODO: When you hit the walls of the homes, you die.
-        //TODO: When you hit the homeFrog you die.
-        //TODO: Timer
-        //TODO: Lives
-        //TODO: Scoring
-        //TODO: GameState
 
         private void Awake()
         {
@@ -94,7 +86,7 @@ namespace Frogger
             Die();
         }
 
-        public bool HandleHomeCollision(Vector3 destination)
+        private bool HandleHomeCollision(Vector3 destination)
         {
             var home = collisionHandler.CheckHome(destination);
             if (home == null) 
@@ -117,7 +109,7 @@ namespace Frogger
             inputHandler.enabled = true;
         }
 
-        private void Die()
+        public void Die()
         {
             movementController.StopAllCoroutines();
             
@@ -127,7 +119,7 @@ namespace Frogger
 
             playerState.State = PlayerState.PlayerStates.Dead;
             
-            _ = new Timer(TimeSpan.FromSeconds(3), Respawn);
+            _ = new Timer(TimeSpan.FromSeconds(2), Respawn);
         }
 
         private void OnDisable()
