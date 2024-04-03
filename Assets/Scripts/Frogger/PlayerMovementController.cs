@@ -22,7 +22,6 @@ namespace Frogger
 
             transform.rotation = Quaternion.Euler(0f, 0f, rotation);
             
-
             StartCoroutine(Leap(destination));
         }
 
@@ -62,6 +61,7 @@ namespace Frogger
             }
             
             SetPosition(leapDestination);
+            
             OnLeapEnd?.Invoke();
         }
         

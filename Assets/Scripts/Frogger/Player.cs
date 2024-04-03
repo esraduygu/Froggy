@@ -46,6 +46,7 @@ namespace Frogger
         {
             playerState.State = PlayerState.PlayerStates.Idle;
             animator.SetSprite(PlayerAnimator.SpriteType.Idle);
+            
             HandleCollisions();
         }
 
@@ -56,14 +57,18 @@ namespace Frogger
         
         private void HandleIdleCollisions()
         {
-            if (playerState.State != PlayerState.PlayerStates.Idle || transform.parent != null) return;
+            if (playerState.State != PlayerState.PlayerStates.Idle || transform.parent != null) 
+                return;
+            
             HandleObstacleCollision(transform.position);
         }
 
         private void HandleCollisions()
         {
             var position = transform.position;
-            if (HandleHomeCollision(position)) return;
+            
+            if (HandleHomeCollision(position)) 
+                return;
             
             var platform = collisionHandler.CheckPlatform(position);
             
@@ -78,15 +83,19 @@ namespace Frogger
 
         private void HandleObstacleCollision(Vector3 destination)
         {
-            if (!collisionHandler.CheckObstacle(destination)) return;
+            if (!collisionHandler.CheckObstacle(destination)) 
+                return;
+            
             transform.position = destination;
+            
             Die();
         }
 
         private bool HandleHomeCollision(Vector3 destination)
         {
             var home = collisionHandler.CheckHome(destination);
-            if (home == null) return false;
+            if (home == null) 
+                return false;
 
             home.GetComponent<Home>().enabled = true;
             
@@ -98,6 +107,7 @@ namespace Frogger
         private void Respawn()
         {
             StopAllCoroutines();
+            
             movementController.SetPlatform(null);
             transform.SetPositionAndRotation(_defaultPos, Quaternion.identity);
             animator.SetSprite(PlayerAnimator.SpriteType.Idle);
@@ -107,6 +117,7 @@ namespace Frogger
         private void Die()
         {
             movementController.StopAllCoroutines();
+            
             animator.SetSprite(PlayerAnimator.SpriteType.Dead);
             transform.rotation = Quaternion.identity;
             inputHandler.enabled = false;

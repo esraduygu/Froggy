@@ -40,6 +40,7 @@ namespace Spawn
         {
             var random = MathUtilities.PickOne(spawnIntervals.Select(x => x.probability).ToArray());
             var spawnInterval = spawnIntervals[random];
+            
             return spawnInterval.interval;
         }
 
