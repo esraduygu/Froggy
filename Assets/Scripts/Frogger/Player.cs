@@ -1,4 +1,5 @@
 using System;
+using Core;
 using UnityEngine;
 using Utilities;
 
@@ -13,6 +14,7 @@ namespace Frogger
         [SerializeField] private PlayerCollisionHandler collisionHandler;
         [SerializeField] private PlayerAnimator animator;
         [SerializeField] private PlayerState playerState;
+        [SerializeField] private SfxManager sfxManager;
         
         private Vector3 _initialPos;
         private float _furthestRow;
@@ -39,6 +41,7 @@ namespace Frogger
         {
             playerState.State = PlayerState.PlayerStates.Leaping;
             animator.SetSprite(PlayerAnimator.SpriteType.Leap);
+            sfxManager.PlaySound(SfxManager.SfxType.Leap);
         }
 
         private void OnLeapEnd()
@@ -132,6 +135,7 @@ namespace Frogger
             movementController.StopAllCoroutines();
             
             animator.SetSprite(PlayerAnimator.SpriteType.Dead);
+            sfxManager.PlaySound(SfxManager.SfxType.Dead);
             transform.rotation = Quaternion.identity;
             inputHandler.enabled = false;
 

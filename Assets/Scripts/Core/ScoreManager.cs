@@ -7,6 +7,7 @@ namespace Core
     {
         [SerializeField] private UIManager uiManager;
         [SerializeField] private HomeManager homeManager;
+        [SerializeField] private SfxManager sfxManager;
         [SerializeField] private Player player;
         [SerializeField] private Ticker ticker;
         
@@ -28,6 +29,7 @@ namespace Core
         private void AllHomesCleared()
         {
            IncrementScore(1000);
+           sfxManager.PlaySound(SfxManager.SfxType.Win);
         }
         
         private void HomeOccupied(Home home)
@@ -35,6 +37,7 @@ namespace Core
             var remainingTime = ticker.GetTimeLeft();
             var bonusPoints = remainingTime * 20;
             IncrementScore(bonusPoints + 50);
+            sfxManager.PlaySound(SfxManager.SfxType.Home);
         }
 
         private void OnAdvancedRow()
