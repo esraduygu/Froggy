@@ -15,6 +15,7 @@ namespace Frogger
         [SerializeField] private PlayerAnimator animator;
         [SerializeField] private PlayerState playerState;
         [SerializeField] private SfxManager sfxManager;
+        [SerializeField] private Ticker ticker;
         
         private Vector3 _initialPos;
         private float _furthestRow;
@@ -121,6 +122,8 @@ namespace Frogger
         
         private void Respawn()
         {
+            ticker.StopCountdown();
+            ticker.StartCountdown();
             StopAllCoroutines();
             
             movementController.SetPlatform(null);

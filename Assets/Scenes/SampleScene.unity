@@ -1926,6 +1926,7 @@ MonoBehaviour:
   animator: {fileID: 1044403684}
   playerState: {fileID: 1044403687}
   sfxManager: {fileID: 434133035}
+  ticker: {fileID: 894287047}
 --- !u!1 &1048505338
 GameObject:
   m_ObjectHideFlags: 0
