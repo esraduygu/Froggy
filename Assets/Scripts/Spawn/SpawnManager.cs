@@ -1,11 +1,20 @@
+using System;
 using System.Linq;
 using UnityEngine;
 using Utilities;
 
 namespace Spawn
 {
+    [Serializable]
+    public class InitialSpawn
+    {
+        public GameObject prefab;
+        public Vector3 spawnPos;
+    }
+    
     public class SpawnManager : MonoBehaviour
     {
+        [SerializeField] private InitialSpawn[] initialSpawns;
         [SerializeField] private SpawnInterval[] spawnIntervals;
         [SerializeField] private GameObject obstaclePrefab;
         
@@ -15,8 +24,17 @@ namespace Spawn
         private void Awake()
         {
             _spawnInterval = PickSpawnInterval();
+            Initialize();
         }
 
+        private void Initialize()
+        {
+            foreach (var spawn in initialSpawns)
+            {
+                SpawnObstacle(spawn.spawnPos, spawn.prefab);
+            }
+        }
+        
         private void Update()
         {
             HandleSpawnTimer();
@@ -33,7 +51,7 @@ namespace Spawn
             
             _spawnInterval = PickSpawnInterval();
             
-            SpawnObstacle();
+            SpawnObstacle(transform.position, obstaclePrefab);
         }
 
         private float PickSpawnInterval()
@@ -44,11 +62,9 @@ namespace Spawn
             return spawnInterval.interval;
         }
 
-        private void SpawnObstacle()
+        private void SpawnObstacle(Vector3 pos, GameObject prefab)
         {
-            var spawnPos = transform.position;
-            
-            Instantiate(obstaclePrefab, spawnPos, Quaternion.identity);
+            Instantiate(prefab, pos, Quaternion.identity);
         }
     }
 }
