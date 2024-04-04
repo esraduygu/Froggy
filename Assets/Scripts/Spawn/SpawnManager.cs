@@ -21,10 +21,8 @@ namespace Spawn
 
         private void Initialize()
         {
-            foreach (var spawn in initialSpawns)
-            {
+            foreach (var spawn in initialSpawns) 
                 SpawnObstacle(spawn.spawnPos, spawn.prefab);
-            }
         }
         
         private void Update()
