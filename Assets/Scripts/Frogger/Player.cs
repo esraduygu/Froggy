@@ -6,17 +6,21 @@ namespace Frogger
 {
     public class Player : MonoBehaviour
     {
+        public Action OnAdvancedRow;
+        
         [SerializeField] private PlayerMovementController movementController;
         [SerializeField] private PlayerInputHandler inputHandler;
         [SerializeField] private PlayerCollisionHandler collisionHandler;
         [SerializeField] private PlayerAnimator animator;
         [SerializeField] private PlayerState playerState;
         
-        private Vector3 _defaultPos;
+        private Vector3 _initialPos;
+        private float _furthestRow;
 
         private void Awake()
         {
-            _defaultPos = transform.position;
+            _initialPos = transform.position;
+            _furthestRow = _initialPos.y;
         }
 
         private void OnEnable()
@@ -25,7 +29,7 @@ namespace Frogger
             movementController.OnLeapEnd += OnLeapEnd;
             inputHandler.OnDirectionInput += OnDirectionInput;
         }
-        
+
         private void Update()
         {
             HandleIdleCollisions();
@@ -43,6 +47,19 @@ namespace Frogger
             animator.SetSprite(PlayerAnimator.SpriteType.Idle);
             
             HandleCollisions();
+            
+            CheckIfAdvancedRow();
+        }
+
+        private void CheckIfAdvancedRow()
+        {
+            if (playerState.State == PlayerState.PlayerStates.Dead ||
+                transform.position.y <= _furthestRow) 
+                return;
+            
+            _furthestRow = transform.position.y;
+            
+            OnAdvancedRow?.Invoke();
         }
 
         private void OnDirectionInput(Vector2 direction)
@@ -104,7 +121,8 @@ namespace Frogger
             StopAllCoroutines();
             
             movementController.SetPlatform(null);
-            transform.SetPositionAndRotation(_defaultPos, Quaternion.identity);
+            transform.SetPositionAndRotation(_initialPos, Quaternion.identity);
+            _furthestRow = _initialPos.y;
             animator.SetSprite(PlayerAnimator.SpriteType.Idle);
             inputHandler.enabled = true;
         }

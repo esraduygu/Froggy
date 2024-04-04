@@ -9,7 +9,6 @@ namespace Core
         [SerializeField] private HomeManager homeManager;
         [SerializeField] private Player player;
         [SerializeField] private Ticker ticker;
-        [SerializeField] private PlayerMovementController movementController;
         
         private int _score;
         
@@ -17,14 +16,9 @@ namespace Core
         {
             homeManager.OnAllHomesCleared += AllHomesCleared;
             homeManager.OnHomeCleared += HomeOccupied;
-            movementController.OnLeapEnd += OnLeapEnd;
+            player.OnAdvancedRow += OnAdvancedRow;
         }
-
-        private void OnLeapEnd()
-        {
-            IncrementScore(10);
-        }
-
+        
         private void Awake()
         {
             _score = 0;
@@ -43,6 +37,11 @@ namespace Core
             IncrementScore(bonusPoints + 50);
         }
 
+        private void OnAdvancedRow()
+        {
+            IncrementScore(10);
+        }
+        
         private void IncrementScore(int amount)
         {
             _score += amount;
@@ -53,6 +52,7 @@ namespace Core
         {
             homeManager.OnAllHomesCleared -= AllHomesCleared;
             homeManager.OnHomeCleared -= HomeOccupied;
+            player.OnAdvancedRow -= OnAdvancedRow;
         }
     }
 }
