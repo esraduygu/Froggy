@@ -38,8 +38,8 @@ namespace Utilities
             Cancel();
             _durationLeft = _startTime - DateTime.Now;
         }
-        
-        public void Cancel()
+
+        private void Cancel()
         {
             _cancellation.Cancel();
         }
