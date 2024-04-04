@@ -1,17 +1,9 @@
-using System;
 using System.Linq;
 using UnityEngine;
 using Utilities;
 
 namespace Spawn
 {
-    [Serializable]
-    public class InitialSpawn
-    {
-        public GameObject prefab;
-        public Vector3 spawnPos;
-    }
-    
     public class SpawnManager : MonoBehaviour
     {
         [SerializeField] private InitialSpawn[] initialSpawns;
