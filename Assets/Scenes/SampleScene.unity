@@ -2014,7 +2014,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiManager: {fileID: 1193766000}
-  playerState: {fileID: 1044403687}
   player: {fileID: 1044403693}
   gameController: {fileID: 1954587491}
 --- !u!4 &1004943062
@@ -3574,6 +3573,7 @@ MonoBehaviour:
   homeManager: {fileID: 497616094}
   player: {fileID: 1044403693}
   uiManager: {fileID: 1193766000}
+  ticker: {fileID: 894287047}
 --- !u!4 &1954587492
 Transform:
   m_ObjectHideFlags: 0

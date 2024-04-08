@@ -39,7 +39,7 @@ namespace Utilities
             _durationLeft = _startTime - DateTime.Now;
         }
 
-        private void Cancel()
+        public void Cancel()
         {
             _cancellation.Cancel();
         }

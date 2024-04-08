@@ -43,6 +43,11 @@ namespace Core
         {
            _timer?.Dispose();
         }
+
+        public void CancelCountdown()
+        {
+            _timer?.Cancel();
+        }
         
         public int GetTimeLeft()
         {
