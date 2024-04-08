@@ -8,7 +8,7 @@ namespace Core
         [SerializeField] private TMP_Text scoreText;
         [SerializeField] private TMP_Text timerText;
         [SerializeField] private TMP_Text livesText;
-        [SerializeField] private GameObject gameOverMenu;
+        [SerializeField] private GameOverScreen gameOverMenu;
         
         public void UpdateScoreText(int score)
         {
@@ -28,7 +28,7 @@ namespace Core
         public void SetGameOverMenu(bool gameOver)
         {
             if (gameOverMenu != null)
-                gameOverMenu.SetActive(gameOver);
+                gameOverMenu.gameObject.SetActive(gameOver);
         }
     }
 }

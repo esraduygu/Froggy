@@ -6,7 +6,6 @@ namespace Core
 {
     public class GameController : MonoBehaviour
     {
-        
         [SerializeField] private Player player;
         [SerializeField] private HomeManager homeManager;
         [SerializeField] private UIManager uiManager;
@@ -14,7 +13,8 @@ namespace Core
         
         public void NewLevel()
         {
-            homeManager.ResetHomes();   
+            homeManager.ResetHomes();
+            
             player.Respawn();
         }
         
@@ -22,12 +22,9 @@ namespace Core
         {
             uiManager.SetGameOverMenu(true);
             ticker.CancelCountdown();
-
-            if (Input.anyKey) 
-                NewGame();
         }
         
-        private void NewGame()
+        public void NewGame()
         {
             SceneManager.UnloadScene(0);
             SceneManager.LoadScene(0);

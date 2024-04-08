@@ -13,6 +13,7 @@ namespace Frogger
         [SerializeField] private PlayerMovementController movementController;
         [SerializeField] private PlayerInputHandler inputHandler;
         [SerializeField] private PlayerCollisionHandler collisionHandler;
+        [SerializeField] private LivesController livesController;
         [SerializeField] private PlayerAnimator animator;
         [SerializeField] private PlayerState playerState;
         [SerializeField] private SfxManager sfxManager;
@@ -146,8 +147,9 @@ namespace Frogger
             playerState.State = PlayerState.PlayerStates.Dead;
 
             OnDeath?.Invoke();
-
-            _ = new Timer(TimeSpan.FromSeconds(2), Respawn);
+            
+            if (livesController.Lives > 0)
+                _ = new Timer(TimeSpan.FromSeconds(2), Respawn);
         }
 
         private void OnDisable()

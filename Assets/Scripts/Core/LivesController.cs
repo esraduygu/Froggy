@@ -10,42 +10,47 @@ namespace Core
         [SerializeField] private UIManager uiManager;
         [SerializeField] private Player player;
         [SerializeField] private GameController gameController;
-
+        
         private int _lives;
+
+        public int Lives
+        {
+            get => _lives;
+            private set
+            {
+                _lives = value;
+                uiManager.UpdateLivesText(Lives);
+            
+                if (Lives > 0)
+                    return;
+            
+                _ = new Timer(TimeSpan.FromSeconds(1), gameController.GameOver);
+            }
+        }
 
         private void OnEnable()
         {
-            player.OnDeath += SetLives;
+            player.OnDeath += DecrementLives;
         }
 
         private void Awake()
         {
-            _lives = 3;
-            uiManager.UpdateLivesText(_lives);
-        }
-
-        private void Update()
-        {
-            CheckLives();
-        }
-
-        private void CheckLives()
-        {
-            if (_lives > 0)
-                return;
-            
-            _ = new Timer(TimeSpan.FromSeconds(1), gameController.GameOver);
-        }
-
-        private void SetLives()
-        {
-            _lives--;
-            uiManager.UpdateLivesText(_lives);
+            ResetLives();
         }
         
+        private void DecrementLives()
+        {
+            Lives--;
+        }
+
+        public void ResetLives()
+        {
+            Lives = 3;
+        }
+
         private void OnDisable()
         {
-            player.OnDeath -= SetLives;
+            player.OnDeath -= DecrementLives;
         }
     }
 }

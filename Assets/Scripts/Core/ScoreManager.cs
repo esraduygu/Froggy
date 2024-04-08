@@ -12,17 +12,22 @@ namespace Core
         [SerializeField] private HomeManager homeManager;
         [SerializeField] private Player player;
         [SerializeField] private Ticker ticker;
-        
+
         private int _score;
-        
+
         private void OnEnable()
         {
             homeManager.OnAllHomesCleared += AllHomesCleared;
             homeManager.OnHomeCleared += HomeOccupied;
             player.OnAdvancedRow += OnAdvancedRow;
         }
-        
+
         private void Awake()
+        {
+            ResetScore();
+        }
+
+        public void ResetScore()
         {
             _score = 0;
             uiManager.UpdateScoreText(_score);
@@ -30,11 +35,11 @@ namespace Core
 
         private void AllHomesCleared()
         {
-           IncrementScore(1000);
-           sfxManager.PlaySound(SfxManager.SfxType.Win);
-           gameController.NewLevel();
+            IncrementScore(1000);
+            sfxManager.PlaySound(SfxManager.SfxType.Win);
+            gameController.NewLevel();
         }
-        
+
         private void HomeOccupied(Home home)
         {
             var remainingTime = ticker.GetTimeLeft();
@@ -53,7 +58,7 @@ namespace Core
             _score += amount;
             uiManager.UpdateScoreText(_score);
         }
-        
+
         private void OnDisable()
         {
             homeManager.OnAllHomesCleared -= AllHomesCleared;
