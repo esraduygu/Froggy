@@ -8,6 +8,7 @@ namespace Core
         [SerializeField] private UIManager uiManager;
         [SerializeField] private HomeManager homeManager;
         [SerializeField] private SfxManager sfxManager;
+        [SerializeField] private GameController gameController;
         [SerializeField] private Player player;
         [SerializeField] private Ticker ticker;
         
@@ -30,6 +31,7 @@ namespace Core
         {
            IncrementScore(1000);
            sfxManager.PlaySound(SfxManager.SfxType.Win);
+           gameController.NewLevel();
         }
         
         private void HomeOccupied(Home home)
@@ -45,7 +47,7 @@ namespace Core
             IncrementScore(10);
         }
         
-        private void IncrementScore(int amount)
+        public void IncrementScore(int amount)
         {
             _score += amount;
             uiManager.UpdateScoreText(_score);

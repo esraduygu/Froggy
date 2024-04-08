@@ -7,6 +7,8 @@ namespace Core
     {
         [SerializeField] private TMP_Text scoreText;
         [SerializeField] private TMP_Text timerText;
+        [SerializeField] private TMP_Text livesText;
+        [SerializeField] private GameObject gameOverMenu;
         
         public void UpdateScoreText(int score)
         {
@@ -16,6 +18,17 @@ namespace Core
         public void UpdateTimerText(int timer)
         {
             timerText.text = timer.ToString();
+        }
+        
+        public void UpdateLivesText(int lives)
+        {
+            livesText.text = lives.ToString();
+        }
+
+        public void SetGameOverMenu(bool gameOver)
+        {
+            if (gameOverMenu != null)
+                gameOverMenu.SetActive(gameOver);
         }
     }
 }

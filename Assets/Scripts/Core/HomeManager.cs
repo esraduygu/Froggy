@@ -11,6 +11,12 @@ namespace Core
         
         [SerializeField] private Home[] homes;
 
+        public void ResetHomes()
+        {
+            foreach (var home in homes) 
+                home.SetOccupied(false);
+        }
+        
         private void OnEnable()
         {
             foreach (var home in homes) 

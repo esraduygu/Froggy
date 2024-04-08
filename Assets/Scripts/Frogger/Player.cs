@@ -8,6 +8,7 @@ namespace Frogger
     public class Player : MonoBehaviour
     {
         public Action OnAdvancedRow;
+        public Action OnDeath;
         
         [SerializeField] private PlayerMovementController movementController;
         [SerializeField] private PlayerInputHandler inputHandler;
@@ -119,8 +120,8 @@ namespace Frogger
             
             return true;
         }
-        
-        private void Respawn()
+
+        public void Respawn()
         {
             ticker.StopCountdown();
             ticker.StartCountdown();
@@ -143,6 +144,8 @@ namespace Frogger
             inputHandler.enabled = false;
 
             playerState.State = PlayerState.PlayerStates.Dead;
+            
+            OnDeath?.Invoke();
             
             _ = new Timer(TimeSpan.FromSeconds(2), Respawn);
         }
