@@ -22,23 +22,6 @@ namespace Utilities
             StartTimerFromBeginning().Forget();
         }
         
-        public void Restart()
-        {
-            Cancel();
-            StartTimerFromBeginning().Forget();
-        }
-        
-        public void Resume()
-        {
-            StartTimer(_durationLeft).Forget();
-        }
-        
-        public void Stop()
-        {
-            Cancel();
-            _durationLeft = _startTime - DateTime.Now;
-        }
-
         public void Cancel()
         {
             _cancellation.Cancel();

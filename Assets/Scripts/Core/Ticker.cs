@@ -7,8 +7,8 @@ namespace Core
 {
     public class Ticker : MonoBehaviour
     {
-        [SerializeField] private UIManager uiManager;
         [SerializeField] private Player player;
+        [SerializeField] private UIManager uiManager;
 
         private Timer _timer;
         private int _timeLeft;

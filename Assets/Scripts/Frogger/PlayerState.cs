@@ -5,7 +5,7 @@ namespace Frogger
 {
     public class PlayerState : MonoBehaviour
     {
-        public Action<PlayerStates> OnChange;
+        private Action<PlayerStates> _onChange;
         
         private PlayerStates _state;
         
@@ -24,7 +24,7 @@ namespace Frogger
                 if (_state == value) return;
                 
                 _state = value;
-                OnChange?.Invoke(value);
+                _onChange?.Invoke(value);
             }
         }
     }

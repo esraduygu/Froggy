@@ -1,14 +1,15 @@
 ﻿using Frogger;
+using Obstacle;
 using UnityEngine;
 
 namespace Core
 {
     public class ScoreManager : MonoBehaviour
     {
-        [SerializeField] private UIManager uiManager;
-        [SerializeField] private HomeManager homeManager;
-        [SerializeField] private SfxManager sfxManager;
         [SerializeField] private GameController gameController;
+        [SerializeField] private UIManager uiManager;
+        [SerializeField] private SfxManager sfxManager;
+        [SerializeField] private HomeManager homeManager;
         [SerializeField] private Player player;
         [SerializeField] private Ticker ticker;
         
@@ -46,8 +47,8 @@ namespace Core
         {
             IncrementScore(10);
         }
-        
-        public void IncrementScore(int amount)
+
+        private void IncrementScore(int amount)
         {
             _score += amount;
             uiManager.UpdateScoreText(_score);

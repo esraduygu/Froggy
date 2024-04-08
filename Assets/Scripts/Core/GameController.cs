@@ -1,21 +1,22 @@
-using System;
 using Frogger;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Utilities;
 
 namespace Core
 {
     public class GameController : MonoBehaviour
     {
-        private Action _onGameOver;
         
-        [SerializeField] private HomeManager homeManager;
         [SerializeField] private Player player;
+        [SerializeField] private HomeManager homeManager;
         [SerializeField] private UIManager uiManager;
         [SerializeField] private Ticker ticker;
-
-        private Timer _timer;
+        
+        public void NewLevel()
+        {
+            homeManager.ResetHomes();   
+            player.Respawn();
+        }
         
         public void GameOver()
         {
@@ -24,12 +25,6 @@ namespace Core
 
             if (Input.anyKey) 
                 NewGame();
-        }
-        
-        public void NewLevel()
-        {
-            homeManager.ResetHomes();   
-            player.Respawn();
         }
         
         private void NewGame()

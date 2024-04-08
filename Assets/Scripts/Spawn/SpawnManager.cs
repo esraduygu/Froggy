@@ -16,6 +16,7 @@ namespace Spawn
         private void Awake()
         {
             _spawnInterval = PickSpawnInterval();
+            
             Initialize();
         }
 

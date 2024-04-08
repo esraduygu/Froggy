@@ -1,4 +1,5 @@
 using Core;
+using Obstacle;
 using UnityEngine;
 
 namespace Frogger
