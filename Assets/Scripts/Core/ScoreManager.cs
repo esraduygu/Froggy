@@ -16,6 +16,16 @@ namespace Core
         private int _score;
         private int _bestScore;
 
+        private int BestScore
+        {
+            get => _bestScore;
+            set
+            {
+                _bestScore = value;
+                uiManager.UpdateBestScoreText(value);
+            }
+        }
+
         private void OnEnable()
         {
             homeManager.OnAllHomesCleared += AllHomesCleared;
@@ -31,7 +41,7 @@ namespace Core
 
         private void LoadBestScore()
         {
-            SetBestScore(PlayerPrefs.GetInt("BestScore"));
+            BestScore = PlayerPrefs.GetInt("BestScore");
         }
         
         private void ResetScore()
@@ -64,23 +74,17 @@ namespace Core
         {
             _score += amount;
             
-            if (_score > _bestScore)
+            if (_score > BestScore)
+            {            
+                BestScore = _score;
                 SaveBestScore(_score);
-            
+            }
+
             uiManager.UpdateScoreText(_score);
         }
-
-        private void SetBestScore(int value)
+        
+        private static void SaveBestScore(int value)
         {
-            _bestScore = value;
-            
-            uiManager.UpdateBestScoreText(value);
-        }
-
-        private void SaveBestScore(int value)
-        {
-            SetBestScore(_bestScore);
-            
             PlayerPrefs.SetInt("BestScore", value);
             PlayerPrefs.Save();
         }

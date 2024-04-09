@@ -16,12 +16,13 @@ namespace Core
         public int Lives
         {
             get => _lives;
+            
             private set
             {
                 _lives = value;
-                uiManager.UpdateLivesText(Lives);
+                uiManager.UpdateLivesText(value);
             
-                if (Lives > 0)
+                if (value > 0)
                     return;
             
                 _ = new Timer(TimeSpan.FromSeconds(1), gameController.GameOver);

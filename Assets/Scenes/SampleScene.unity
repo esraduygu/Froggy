@@ -1127,7 +1127,6 @@ MonoBehaviour:
   homeManager: {fileID: 497616094}
   player: {fileID: 1044403693}
   ticker: {fileID: 160663362}
-  bestScore: 0
 --- !u!1 &355645995
 GameObject:
   m_ObjectHideFlags: 0
@@ -4041,7 +4040,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1044403693}
   homeManager: {fileID: 497616094}
-  scoreManager: {fileID: 250677381}
+  livesController: {fileID: 1324396806}
   uiManager: {fileID: 53587858}
   ticker: {fileID: 160663362}
 --- !u!4 &1954587492
