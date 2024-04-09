@@ -112,7 +112,7 @@ namespace Frogger
         private bool HandleHomeCollision(Vector3 destination)
         {
             var home = collisionHandler.CheckHome(destination);
-            if (home == null)
+            if (home == null || home.IsOccupied)
                 return false;
 
             home.SetOccupied(true);
