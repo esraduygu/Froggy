@@ -31,8 +31,7 @@ namespace Core
 
         private void LoadBestScore()
         {
-            _bestScore = PlayerPrefs.GetInt("BestScore");
-            uiManager.UpdateBestScoreText(_bestScore);
+            SetBestScore(PlayerPrefs.GetInt("BestScore"));
         }
         
         private void ResetScore()
@@ -66,7 +65,7 @@ namespace Core
             _score += amount;
             
             if (_score > _bestScore)
-                SetBestScore(_score);
+                SaveBestScore(_score);
             
             uiManager.UpdateScoreText(_score);
         }
@@ -75,10 +74,15 @@ namespace Core
         {
             _bestScore = value;
             
+            uiManager.UpdateBestScoreText(value);
+        }
+
+        private void SaveBestScore(int value)
+        {
+            SetBestScore(_bestScore);
+            
             PlayerPrefs.SetInt("BestScore", value);
             PlayerPrefs.Save();
-            
-            uiManager.UpdateBestScoreText(value);
         }
 
         private void OnDisable()
