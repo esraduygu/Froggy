@@ -16,9 +16,12 @@ namespace Core
         public int Lives
         {
             get => _lives;
-            
+
             private set
             {
+                if (value < 0)
+                    return;
+                
                 _lives = value;
                 uiManager.UpdateLivesText(value);
             
@@ -28,6 +31,7 @@ namespace Core
                 _ = new Timer(TimeSpan.FromSeconds(1), gameController.GameOver);
             }
         }
+        
 
         private void OnEnable()
         {
@@ -36,7 +40,12 @@ namespace Core
 
         private void Awake()
         {
-            ResetLives();
+            Lives = 3;
+        }
+        
+        public void UpdateLivesForNewLevel()
+        {
+            Lives += 1;
         }
         
         private void DecrementLives()
@@ -44,14 +53,10 @@ namespace Core
             Lives--;
         }
 
-        public void ResetLives()
-        {
-            Lives = 3;
-        }
-
         private void OnDisable()
         {
             player.OnDeath -= DecrementLives;
         }
+
     }
 }

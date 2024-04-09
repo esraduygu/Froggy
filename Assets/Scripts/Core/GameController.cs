@@ -15,7 +15,8 @@ namespace Core
         public void NewLevel()
         {
             homeManager.ResetHomes();
-            livesController.ResetLives();
+
+            livesController.UpdateLivesForNewLevel();
             
             player.Respawn();
         }
