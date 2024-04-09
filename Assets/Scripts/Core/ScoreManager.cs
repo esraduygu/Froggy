@@ -1,5 +1,6 @@
 ﻿using Frogger;
 using Obstacle;
+using UI;
 using UnityEngine;
 
 namespace Core

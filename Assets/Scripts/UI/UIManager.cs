@@ -1,7 +1,8 @@
-﻿using TMPro;
+﻿using Core;
+using TMPro;
 using UnityEngine;
 
-namespace Core
+namespace UI
 {
     public class UIManager : MonoBehaviour
     {
@@ -33,7 +34,7 @@ namespace Core
 
         public void SetGameOverMenu(bool gameOver)
         {
-            if (gameOverMenu != null)
+            if (gameOverMenu != null) 
                 gameOverMenu.gameObject.SetActive(gameOver);
         }
     }
