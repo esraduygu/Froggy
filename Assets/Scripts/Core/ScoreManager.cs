@@ -14,6 +14,7 @@ namespace Core
         [SerializeField] private Ticker ticker;
 
         private int _score;
+        private int _bestScore;
 
         private void OnEnable()
         {
@@ -25,9 +26,16 @@ namespace Core
         private void Awake()
         {
             ResetScore();
+            LoadBestScore();
         }
 
-        public void ResetScore()
+        private void LoadBestScore()
+        {
+            _bestScore = PlayerPrefs.GetInt("BestScore");
+            uiManager.UpdateBestScoreText(_bestScore);
+        }
+        
+        private void ResetScore()
         {
             _score = 0;
             uiManager.UpdateScoreText(_score);
@@ -39,7 +47,7 @@ namespace Core
             sfxManager.PlaySound(SfxManager.SfxType.Win);
             gameController.NewLevel();
         }
-
+        
         private void HomeOccupied(Home home)
         {
             var remainingTime = ticker.GetTimeLeft();
@@ -56,7 +64,21 @@ namespace Core
         private void IncrementScore(int amount)
         {
             _score += amount;
+            
+            if (_score > _bestScore)
+                SetBestScore(_score);
+            
             uiManager.UpdateScoreText(_score);
+        }
+
+        private void SetBestScore(int value)
+        {
+            _bestScore = value;
+            
+            PlayerPrefs.SetInt("BestScore", value);
+            PlayerPrefs.Save();
+            
+            uiManager.UpdateBestScoreText(value);
         }
 
         private void OnDisable()

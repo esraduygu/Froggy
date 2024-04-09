@@ -6,6 +6,7 @@ namespace Core
     public class UIManager : MonoBehaviour
     {
         [SerializeField] private TMP_Text scoreText;
+        [SerializeField] private TMP_Text bestScoreText;
         [SerializeField] private TMP_Text timerText;
         [SerializeField] private TMP_Text livesText;
         [SerializeField] private GameOverScreen gameOverMenu;
@@ -13,6 +14,11 @@ namespace Core
         public void UpdateScoreText(int score)
         {
             scoreText.text = score.ToString();
+        }
+
+        public void UpdateBestScoreText(int bestScore)
+        {
+            bestScoreText.text = bestScore.ToString();
         }
 
         public void UpdateTimerText(int timer)
