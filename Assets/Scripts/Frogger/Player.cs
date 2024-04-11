@@ -138,7 +138,6 @@ namespace Frogger
             _furthestRow = _initialPos.y;
             animator.SetSprite(PlayerAnimator.SpriteType.Idle);
             inputHandler.enabled = true;
-            
         }
 
         public void Die()

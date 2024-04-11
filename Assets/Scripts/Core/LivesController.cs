@@ -41,7 +41,7 @@ namespace Core
 
         private void Awake()
         {
-            Lives = 3;
+            Lives = 0;
         }
         
         public void UpdateLivesForNewLevel()
@@ -58,6 +58,5 @@ namespace Core
         {
             player.OnDeath -= DecrementLives;
         }
-
     }
 }

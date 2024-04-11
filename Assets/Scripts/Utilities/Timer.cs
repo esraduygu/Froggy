@@ -39,7 +39,7 @@ namespace Utilities
             
             _startTime = DateTime.Now;
             await UniTask.Delay(duration, cancellationToken: _cancellation.Token).SuppressCancellationThrow();
-            if (_cancellation.IsCancellationRequested)
+            if (_cancellation == null || _cancellation.IsCancellationRequested)
                 return;
 
             _callback.Invoke();
@@ -47,9 +47,12 @@ namespace Utilities
         
         public void Dispose()
         {
+            if (_cancellation == null)
+                return;
+            
             _cancellation?.Cancel();
             _cancellation?.Dispose();
+            _cancellation = null;
         }
-
     }
 }

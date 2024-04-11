@@ -23,11 +23,15 @@ namespace UI
         private void OnStateChange(GameController.GameState state)
         {
             if (state is GameController.GameState.GameOver)
+            {
                 SetGameOverMenu(true);
+                SetGetReadyMenu(false);
+            }
             else if (state is GameController.GameState.GetReady)
             {
                 SetStartMenu(false);
                 SetGetReadyMenu(true);
+                SetGameOverMenu(false);
             }
             else if (state is GameController.GameState.Playing)
                 SetGetReadyMenu(false);

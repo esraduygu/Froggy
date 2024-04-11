@@ -1,5 +1,7 @@
-﻿using Core;
+﻿using System;
+using Core;
 using UnityEngine;
+using Utilities;
 
 namespace UI
 {
@@ -10,10 +12,13 @@ namespace UI
         private void Update()
         {
             if (Input.anyKeyDown)
-                gameController.GetReady();
+                GetReady();
         }
         
-     
-        
+        private void GetReady()
+        {
+            gameController.GetReady();
+            _ = new Timer(TimeSpan.FromSeconds(3), gameController.StartGame);
+        }
     }
 }
