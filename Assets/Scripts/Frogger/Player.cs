@@ -40,6 +40,7 @@ namespace Frogger
         {
             if (gameController.State == GameController.GameState.Playing)
                 HandleIdleCollisions();
+                
             else
                 enabled = false;
         }

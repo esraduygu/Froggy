@@ -24,7 +24,6 @@ namespace Core
                 
                 if (value < 0)
                 {
-                    Debug.Log("blahbalkhsfjkhsdjkfhjsd");
                     _ = new Timer(TimeSpan.FromSeconds(1), gameController.GameOver);
                 
                     return;
