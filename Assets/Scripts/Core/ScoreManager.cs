@@ -44,8 +44,8 @@ namespace Core
         {
             BestScore = PlayerPrefs.GetInt("BestScore");
         }
-        
-        private void ResetScore()
+
+        public void ResetScore()
         {
             _score = 0;
             uiManager.UpdateScoreText(_score);

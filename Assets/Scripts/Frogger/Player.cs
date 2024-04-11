@@ -18,6 +18,7 @@ namespace Frogger
         [SerializeField] private PlayerState playerState;
         [SerializeField] private SfxManager sfxManager;
         [SerializeField] private Ticker ticker;
+        [SerializeField] private GameController gameController;
 
         private Vector3 _initialPos;
         private float _furthestRow;
@@ -37,7 +38,10 @@ namespace Frogger
 
         private void Update()
         {
-            HandleIdleCollisions();
+            if (gameController.State == GameController.GameState.Playing)
+                HandleIdleCollisions();
+            else
+                enabled = false;
         }
 
         private void OnLeapStart()
@@ -51,7 +55,7 @@ namespace Frogger
         {
             playerState.State = PlayerState.PlayerStates.Idle;
             animator.SetSprite(PlayerAnimator.SpriteType.Idle);
-
+            
             HandleCollisions();
 
             CheckIfAdvancedRow();
@@ -133,6 +137,7 @@ namespace Frogger
             _furthestRow = _initialPos.y;
             animator.SetSprite(PlayerAnimator.SpriteType.Idle);
             inputHandler.enabled = true;
+            
         }
 
         public void Die()
@@ -148,7 +153,7 @@ namespace Frogger
 
             OnDeath?.Invoke();
             
-            if (livesController.Lives > 0)
+            if (livesController.Lives >= 0)
                 _ = new Timer(TimeSpan.FromSeconds(2), Respawn);
         }
 

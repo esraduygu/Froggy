@@ -10,13 +10,34 @@ namespace Core
     {
         [SerializeField] private Player player;
         [SerializeField] private UIManager uiManager;
+        [SerializeField] private GameController gameController;
 
         private Timer _timer;
         private int _timeLeft;
-
+        
         private void Awake()
         {
-            StartCountdown();
+            StopCountdown();
+        }
+
+        private void OnEnable()
+        {
+            gameController.OnStateChange += OnStateChange;
+        }
+
+        private void OnStateChange(GameController.GameState state)
+        {
+            switch (gameController.State)
+            {
+                case GameController.GameState.GetReady 
+                    or GameController.GameState.StartMenu
+                    or GameController.GameState.GameOver:
+                    StopCountdown();
+                    break;
+                default:
+                    StartCountdown();
+                    break;
+            }
         }
 
         public void StartCountdown()
@@ -53,6 +74,11 @@ namespace Core
         public int GetTimeLeft()
         {
             return _timeLeft;
+        }
+
+        private void OnDisable()
+        {
+            gameController.OnStateChange -= OnStateChange;
         }
     }
 }

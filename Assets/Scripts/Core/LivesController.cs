@@ -20,16 +20,17 @@ namespace Core
 
             private set
             {
-                if (value < 0)
-                    return;
-                
                 _lives = value;
-                uiManager.UpdateLivesText(value);
-            
-                if (value > 0)
+                
+                if (value < 0)
+                {
+                    Debug.Log("blahbalkhsfjkhsdjkfhjsd");
+                    _ = new Timer(TimeSpan.FromSeconds(1), gameController.GameOver);
+                
                     return;
-            
-                _ = new Timer(TimeSpan.FromSeconds(1), gameController.GameOver);
+                }
+                
+                uiManager.UpdateLivesText(value);
             }
         }
         
