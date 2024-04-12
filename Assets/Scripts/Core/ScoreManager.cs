@@ -60,7 +60,7 @@ namespace Core
         
         private void HomeOccupied(Home home)
         {
-            var remainingTime = levelTimer.GetTimeLeft();
+            var remainingTime = levelTimer.Countdown;
             var bonusPoints = remainingTime * 20;
             IncrementScore(bonusPoints + 50);
             sfxManager.PlaySound(SfxManager.SfxType.Home);
