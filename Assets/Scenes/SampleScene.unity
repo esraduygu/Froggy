@@ -3484,7 +3484,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementController: {fileID: 1044403691}
-  _platformFollower: {fileID: 1044403698}
+  platformFollower: {fileID: 1044403698}
   collisionHandler: {fileID: 1044403686}
   inputHandler: {fileID: 1044403685}
   livesController: {fileID: 1324396806}
@@ -5556,6 +5556,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Frogger
       objectReference: {fileID: 0}
+    - target: {fileID: 5160621913908483085, guid: 5bbfeedbe6e64b843a38aeb6f45f2964, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1044403684}
     - target: {fileID: 5160621913908483085, guid: 5bbfeedbe6e64b843a38aeb6f45f2964, type: 3}
       propertyPath: constraint
       value: 
