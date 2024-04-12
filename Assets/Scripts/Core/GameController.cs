@@ -14,7 +14,7 @@ namespace Core
         [SerializeField] private GameState gameState;
         [SerializeField] private UIManager uiManager;
         [SerializeField] private Player player;
-        [SerializeField] private Ticker ticker;
+        [SerializeField] private LevelTimer levelTimer;
         
         private void OnEnable()
         {
@@ -77,10 +77,10 @@ namespace Core
                 case GameState.State.GetReady
                     or GameState.State.StartMenu
                     or GameState.State.GameOver:
-                    ticker.StopCountdown();
+                    levelTimer.StopCountdown();
                     break;
-                default:
-                    ticker.StartCountdown();
+                case GameState.State.Playing:
+                    levelTimer.StartCountdown();
                     break;
             }
         }

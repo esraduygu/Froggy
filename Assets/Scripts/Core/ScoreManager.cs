@@ -12,7 +12,7 @@ namespace Core
         [SerializeField] private SfxManager sfxManager;
         [SerializeField] private HomeManager homeManager;
         [SerializeField] private Player player;
-        [SerializeField] private Ticker ticker;
+        [SerializeField] private LevelTimer levelTimer;
 
         private int _score;
         private int _bestScore;
@@ -60,7 +60,7 @@ namespace Core
         
         private void HomeOccupied(Home home)
         {
-            var remainingTime = ticker.GetTimeLeft();
+            var remainingTime = levelTimer.GetTimeLeft();
             var bonusPoints = remainingTime * 20;
             IncrementScore(bonusPoints + 50);
             sfxManager.PlaySound(SfxManager.SfxType.Home);

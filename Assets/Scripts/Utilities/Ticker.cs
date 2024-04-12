@@ -5,6 +5,7 @@ namespace Utilities
     public class Ticker : IDisposable
     {
         private Timer _timer;
+        private bool _isDisposed;
         
         private readonly TimeSpan _durationBetweenTicks;
         private readonly Action _onTick;
@@ -24,6 +25,9 @@ namespace Utilities
 
         private void OnTick()
         {
+            if (_isDisposed)
+                return;
+            
             _onTick?.Invoke();
 
             RenewTimer();
@@ -43,6 +47,8 @@ namespace Utilities
 
         public void Dispose()
         {
+            _isDisposed = true;
+            
             if (_timer != null)
                 DisposeTimer();
         }

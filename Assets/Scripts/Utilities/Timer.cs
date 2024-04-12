@@ -32,7 +32,6 @@ namespace Utilities
             _cancellation?.Dispose();
             _cancellation = new CancellationTokenSource();
             
-            _startTime = DateTime.Now;
             await UniTask.Delay(duration, cancellationToken: _cancellation.Token).SuppressCancellationThrow();
             if (_cancellation == null || _cancellation.IsCancellationRequested)
                 return;

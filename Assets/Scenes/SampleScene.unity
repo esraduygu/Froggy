@@ -308,7 +308,7 @@ MonoBehaviour:
   gameState: {fileID: 1954587493}
   uiManager: {fileID: 53587858}
   player: {fileID: 1044403693}
-  ticker: {fileID: 160663362}
+  _levelTimer: {fileID: 160663362}
 --- !u!4 &31525811
 Transform:
   m_ObjectHideFlags: 0
@@ -1317,7 +1317,7 @@ MonoBehaviour:
   sfxManager: {fileID: 434133035}
   homeManager: {fileID: 497616094}
   player: {fileID: 1044403693}
-  ticker: {fileID: 160663362}
+  _levelTimer: {fileID: 160663362}
 --- !u!1 &355645995
 GameObject:
   m_ObjectHideFlags: 0
@@ -3523,7 +3523,7 @@ MonoBehaviour:
   playerState: {fileID: 1044403687}
   sfxManager: {fileID: 434133035}
   gameState: {fileID: 1954587493}
-  ticker: {fileID: 160663362}
+  _levelTimer: {fileID: 160663362}
 --- !u!1 &1048505338
 GameObject:
   m_ObjectHideFlags: 0

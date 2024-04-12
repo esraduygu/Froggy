@@ -14,6 +14,11 @@ namespace UI
 
         private void OnEnable()
         {
+            StartCountdown();
+        }
+
+        private void StartCountdown()
+        {
             _countdown = 3;
             countdownText.SetText(_countdown.ToString());
             

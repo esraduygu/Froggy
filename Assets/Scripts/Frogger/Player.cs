@@ -18,7 +18,7 @@ namespace Frogger
         [SerializeField] private PlayerState playerState;
         [SerializeField] private SfxManager sfxManager;
         [SerializeField] private GameState gameState;
-        [SerializeField] private Core.Ticker ticker;
+        [SerializeField] private LevelTimer levelTimer;
 
         private Vector3 _initialPos;
         private float _furthestRow;
@@ -122,8 +122,8 @@ namespace Frogger
         {
             if (gameState.CurrentState is GameState.State.Playing)
             {
-                ticker.StopCountdown();
-                ticker.StartCountdown();
+                levelTimer.StopCountdown();
+                levelTimer.StartCountdown();
                 StopAllCoroutines();
             }
 
