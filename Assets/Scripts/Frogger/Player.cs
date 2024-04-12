@@ -11,6 +11,7 @@ namespace Frogger
         public Action OnDeath;
 
         [SerializeField] private PlayerMovementController movementController;
+        [SerializeField] private PlatformFollower _platformFollower;
         [SerializeField] private PlayerCollisionHandler collisionHandler;
         [SerializeField] private PlayerInputHandler inputHandler;
         [SerializeField] private LivesController livesController;
@@ -71,7 +72,7 @@ namespace Frogger
 
         public void HandleIdleCollisions()
         {
-            if (playerState.State != PlayerState.PlayerStates.Idle || transform.parent != null)
+            if (playerState.State != PlayerState.PlayerStates.Idle || _platformFollower.Platform != null)
                 return;
 
             HandleObstacleCollision(transform.position);
@@ -87,12 +88,15 @@ namespace Frogger
             var platform = collisionHandler.CheckPlatform(position);
 
             if (platform != null)
-                movementController.SetPlatform(platform.transform);
+            {
+                _platformFollower.Platform = platform.transform;
+            }
             else
             {
-                movementController.SetPlatform(null);
+                _platformFollower.Platform = null;
                 HandleObstacleCollision(position);
             }
+            
         }
 
         private void HandleObstacleCollision(Vector3 destination)
@@ -127,7 +131,7 @@ namespace Frogger
                 StopAllCoroutines();
             }
 
-            movementController.SetPlatform(null);
+            _platformFollower.Platform = null;
             transform.SetPositionAndRotation(_initialPos, Quaternion.identity);
             _furthestRow = _initialPos.y;
             animator.SetSprite(PlayerAnimator.SpriteType.Idle);

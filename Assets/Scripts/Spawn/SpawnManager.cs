@@ -6,14 +6,13 @@ namespace Spawn
 {
     public class SpawnManager : MonoBehaviour
     {
-        [SerializeField] private InitialSpawn[] initialSpawns;
         [SerializeField] private SpawnInterval[] spawnIntervals;
         [SerializeField] private GameObject obstaclePrefab;
 
         private bool _shouldSpawn;
         private float _timer;
         private float _spawnInterval;
-        
+
         public void StartSpawning()
         {
             if (_shouldSpawn)
@@ -21,8 +20,6 @@ namespace Spawn
             
             _spawnInterval = PickSpawnInterval();
             
-            Initialize();
-
             _shouldSpawn = true;
         }
 
@@ -32,12 +29,6 @@ namespace Spawn
                 return;
             
             _shouldSpawn = false;
-        }
-        
-        private void Initialize()
-        {
-            foreach (var spawn in initialSpawns) 
-                SpawnObstacle(spawn.spawnPos, spawn.prefab);
         }
         
         private void Update()

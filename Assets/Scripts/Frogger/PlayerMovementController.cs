@@ -23,11 +23,6 @@ namespace Frogger
             
             StartCoroutine(Leap(destination));
         }
-
-        public void SetPlatform(Transform platform)
-        {
-            transform.SetParent(platform);
-        }
         
         private static float GetRotationForDirection(Vector3 direction)
         {
@@ -63,7 +58,7 @@ namespace Frogger
             
             OnLeapEnd?.Invoke();
         }
-        
+
         private void SetPosition(Vector3 newPosition)
         {
             var clampedX = Mathf.Clamp(newPosition.x, -xPos, xPos);

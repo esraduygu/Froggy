@@ -689,17 +689,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 970fa847c2a0ead43b33baa172242bb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialSpawns:
-  - prefab: {fileID: 8026698481064852009, guid: f02f2c076fa5ef748943a2ec488c477a, type: 3}
-    spawnPos: {x: -6, y: 4, z: 0}
-  - prefab: {fileID: 8026698481064852009, guid: f02f2c076fa5ef748943a2ec488c477a, type: 3}
-    spawnPos: {x: -2, y: 4, z: 0}
-  - prefab: {fileID: 8026698481064852009, guid: f02f2c076fa5ef748943a2ec488c477a, type: 3}
-    spawnPos: {x: 2, y: 4, z: 0}
-  - prefab: {fileID: 8026698481064852009, guid: f02f2c076fa5ef748943a2ec488c477a, type: 3}
-    spawnPos: {x: 6, y: 4, z: 0}
-  - prefab: {fileID: 8026698481064852009, guid: f02f2c076fa5ef748943a2ec488c477a, type: 3}
-    spawnPos: {x: 9, y: 4, z: 0}
   spawnIntervals:
   - interval: 2
     probability: 0.4
@@ -735,11 +724,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 970fa847c2a0ead43b33baa172242bb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialSpawns:
-  - prefab: {fileID: 1101059168509245464, guid: cdaf8d33e370ecc4e87ced7be0d5e528, type: 3}
-    spawnPos: {x: -4, y: -5, z: 0}
-  - prefab: {fileID: 1101059168509245464, guid: cdaf8d33e370ecc4e87ced7be0d5e528, type: 3}
-    spawnPos: {x: 5, y: -5, z: 0}
   spawnIntervals:
   - interval: 2.5
     probability: 0.025
@@ -2645,15 +2629,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 970fa847c2a0ead43b33baa172242bb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialSpawns:
-  - prefab: {fileID: 1056543041003975375, guid: 22cebfac0b86a3d4a91c9cdd4fcc7101, type: 3}
-    spawnPos: {x: -5, y: 1, z: 0}
-  - prefab: {fileID: 1056543041003975375, guid: 22cebfac0b86a3d4a91c9cdd4fcc7101, type: 3}
-    spawnPos: {x: -1, y: 1, z: 0}
-  - prefab: {fileID: 1056543041003975375, guid: 22cebfac0b86a3d4a91c9cdd4fcc7101, type: 3}
-    spawnPos: {x: 3, y: 1, z: 0}
-  - prefab: {fileID: 1056543041003975375, guid: 22cebfac0b86a3d4a91c9cdd4fcc7101, type: 3}
-    spawnPos: {x: 8, y: 1, z: 0}
   spawnIntervals:
   - interval: 3
     probability: 0.2
@@ -2855,13 +2830,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 970fa847c2a0ead43b33baa172242bb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialSpawns:
-  - prefab: {fileID: 2683656398037970335, guid: 53a9acab6755a354bbb53865212758d3, type: 3}
-    spawnPos: {x: 7, y: 3, z: 0}
-  - prefab: {fileID: 2683656398037970335, guid: 53a9acab6755a354bbb53865212758d3, type: 3}
-    spawnPos: {x: -2, y: 3, z: 0}
-  - prefab: {fileID: 2683656398037970335, guid: 53a9acab6755a354bbb53865212758d3, type: 3}
-    spawnPos: {x: -11, y: 3, z: 0}
   spawnIntervals:
   - interval: 4.5
     probability: 0.4
@@ -3516,6 +3484,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementController: {fileID: 1044403691}
+  _platformFollower: {fileID: 1044403698}
   collisionHandler: {fileID: 1044403686}
   inputHandler: {fileID: 1044403685}
   livesController: {fileID: 1324396806}
@@ -3524,6 +3493,18 @@ MonoBehaviour:
   sfxManager: {fileID: 434133035}
   gameState: {fileID: 1954587493}
   levelTimer: {fileID: 160663362}
+--- !u!114 &1044403698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044403683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50bc926c9e3c4f729db20d73b663a833, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1048505338
 GameObject:
   m_ObjectHideFlags: 0
@@ -3829,11 +3810,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 970fa847c2a0ead43b33baa172242bb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialSpawns:
-  - prefab: {fileID: 2898799197179985617, guid: d54ba1c988deb7b4e8449efd6824e8d1, type: 3}
-    spawnPos: {x: 5, y: -1, z: 0}
-  - prefab: {fileID: 2898799197179985617, guid: d54ba1c988deb7b4e8449efd6824e8d1, type: 3}
-    spawnPos: {x: -5, y: -1, z: 0}
   spawnIntervals:
   - interval: 4
     probability: 0.2
@@ -4531,11 +4507,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 970fa847c2a0ead43b33baa172242bb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialSpawns:
-  - prefab: {fileID: 2795905012595346281, guid: 3df29bb68c76eba4fa4438fa79407073, type: 3}
-    spawnPos: {x: 3, y: -4, z: 0}
-  - prefab: {fileID: 2795905012595346281, guid: 3df29bb68c76eba4fa4438fa79407073, type: 3}
-    spawnPos: {x: -4, y: -4, z: 0}
   spawnIntervals:
   - interval: 2
     probability: 0.2
@@ -4684,15 +4655,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 970fa847c2a0ead43b33baa172242bb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialSpawns:
-  - prefab: {fileID: 311966447623345857, guid: 90dcaaf3f00e1474586f65ef0efa45bd, type: 3}
-    spawnPos: {x: 6, y: 2, z: 0}
-  - prefab: {fileID: 311966447623345857, guid: 90dcaaf3f00e1474586f65ef0efa45bd, type: 3}
-    spawnPos: {x: 1, y: 2, z: 0}
-  - prefab: {fileID: 311966447623345857, guid: 90dcaaf3f00e1474586f65ef0efa45bd, type: 3}
-    spawnPos: {x: -4, y: 2, z: 0}
-  - prefab: {fileID: 311966447623345857, guid: 90dcaaf3f00e1474586f65ef0efa45bd, type: 3}
-    spawnPos: {x: -9, y: 2, z: 0}
   spawnIntervals:
   - interval: 3
     probability: 0.2
@@ -4864,11 +4826,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 970fa847c2a0ead43b33baa172242bb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialSpawns:
-  - prefab: {fileID: 597436663421277484, guid: c4c2bf623aa2fa34c9a2d38e8c4a8a9e, type: 3}
-    spawnPos: {x: -5, y: -3, z: 0}
-  - prefab: {fileID: 597436663421277484, guid: c4c2bf623aa2fa34c9a2d38e8c4a8a9e, type: 3}
-    spawnPos: {x: 5, y: -3, z: 0}
   spawnIntervals:
   - interval: 2
     probability: 0.2
@@ -5005,11 +4962,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 970fa847c2a0ead43b33baa172242bb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialSpawns:
-  - prefab: {fileID: 8529556184711104061, guid: d04cf677bb49c0444b319962cb0b82e8, type: 3}
-    spawnPos: {x: 4, y: -2, z: 0}
-  - prefab: {fileID: 8529556184711104061, guid: d04cf677bb49c0444b319962cb0b82e8, type: 3}
-    spawnPos: {x: -6, y: -2, z: 0}
   spawnIntervals:
   - interval: 2.2
     probability: 0.2
@@ -5410,15 +5362,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 970fa847c2a0ead43b33baa172242bb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialSpawns:
-  - prefab: {fileID: 2923623772536463444, guid: 8673d5a47ae30ab4db8ff39548cd88b5, type: 3}
-    spawnPos: {x: 6, y: 5, z: 0}
-  - prefab: {fileID: 2923623772536463444, guid: 8673d5a47ae30ab4db8ff39548cd88b5, type: 3}
-    spawnPos: {x: 1, y: 5, z: 0}
-  - prefab: {fileID: 2923623772536463444, guid: 8673d5a47ae30ab4db8ff39548cd88b5, type: 3}
-    spawnPos: {x: -4, y: 5, z: 0}
-  - prefab: {fileID: 2923623772536463444, guid: 8673d5a47ae30ab4db8ff39548cd88b5, type: 3}
-    spawnPos: {x: -9, y: 5, z: 0}
   spawnIntervals:
   - interval: 3.5
     probability: 0.2
@@ -5613,6 +5556,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Frogger
       objectReference: {fileID: 0}
+    - target: {fileID: 5160621913908483085, guid: 5bbfeedbe6e64b843a38aeb6f45f2964, type: 3}
+      propertyPath: constraint
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5271794162850882050, guid: 5bbfeedbe6e64b843a38aeb6f45f2964, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5664,6 +5611,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4005529651289352466, guid: 5bbfeedbe6e64b843a38aeb6f45f2964, type: 3}
       insertIndex: 1
       addedObject: {fileID: 1044403693}
+    - targetCorrespondingSourceObject: {fileID: 4005529651289352466, guid: 5bbfeedbe6e64b843a38aeb6f45f2964, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1044403698}
   m_SourcePrefab: {fileID: 100100000, guid: 5bbfeedbe6e64b843a38aeb6f45f2964, type: 3}
 --- !u!1001 &4711488044075047946
 PrefabInstance:
