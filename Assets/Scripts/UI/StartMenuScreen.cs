@@ -23,8 +23,7 @@ namespace UI
         private void GetReady()
         {
             gameState.CurrentState = GameState.State.GetReady;
-            _ = new Timer(TimeSpan.FromSeconds(5), () => gameState.CurrentState = GameState.State.Playing);
+            _ = new Timer(TimeSpan.FromSeconds(3), () => gameState.CurrentState = GameState.State.Playing);
         }
-        
     }
 }

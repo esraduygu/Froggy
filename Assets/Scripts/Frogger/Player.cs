@@ -18,7 +18,7 @@ namespace Frogger
         [SerializeField] private PlayerState playerState;
         [SerializeField] private SfxManager sfxManager;
         [SerializeField] private GameState gameState;
-        [SerializeField] private Ticker ticker;
+        [SerializeField] private Core.Ticker ticker;
 
         private Vector3 _initialPos;
         private float _furthestRow;
