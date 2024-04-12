@@ -34,6 +34,13 @@ namespace Frogger
             movementController.OnLeapStart += OnLeapStart;
             movementController.OnLeapEnd += OnLeapEnd;
             inputHandler.OnDirectionInput += OnDirectionInput;
+            gameController.OnStateChange += OnStateChange;
+        }
+
+        private void OnStateChange(GameController.GameState state)
+        {
+            if (state is GameController.GameState.GameOver)
+                Respawn();
         }
 
         private void Update()
@@ -129,9 +136,12 @@ namespace Frogger
 
         public void Respawn()
         {
-            ticker.StopCountdown();
-            ticker.StartCountdown();
-            StopAllCoroutines();
+            if (gameController.State is GameController.GameState.Playing)
+            {
+                ticker.StopCountdown();
+                ticker.StartCountdown();
+                StopAllCoroutines();
+            }
 
             movementController.SetPlatform(null);
             transform.SetPositionAndRotation(_initialPos, Quaternion.identity);

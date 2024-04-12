@@ -37,11 +37,18 @@ namespace Core
         private void OnEnable()
         {
             player.OnDeath += DecrementLives;
+            gameController.OnStateChange += OnStateChange;
+        }
+
+        private void OnStateChange(GameController.GameState state)
+        {
+            if (state is GameController.GameState.GameOver or GameController.GameState.GetReady)
+                Lives = 3;
         }
 
         private void Awake()
         {
-            Lives = 0;
+            Lives = 3;
         }
         
         public void UpdateLivesForNewLevel()

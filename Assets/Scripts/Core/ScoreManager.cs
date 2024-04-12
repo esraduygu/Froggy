@@ -32,6 +32,16 @@ namespace Core
             homeManager.OnAllHomesCleared += AllHomesCleared;
             homeManager.OnHomeCleared += HomeOccupied;
             player.OnAdvancedRow += OnAdvancedRow;
+            gameController.OnStateChange += OnStateChange;
+        }
+
+        private void OnStateChange(GameController.GameState state)
+        {
+            if (state is GameController.GameState.GameOver or GameController.GameState.GetReady)
+            {
+                ResetScore();
+                LoadBestScore();
+            }
         }
 
         private void Awake()
@@ -45,7 +55,7 @@ namespace Core
             BestScore = PlayerPrefs.GetInt("BestScore");
         }
 
-        public void ResetScore()
+        private void ResetScore()
         {
             _score = 0;
             uiManager.UpdateScoreText(_score);
