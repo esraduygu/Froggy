@@ -34,7 +34,7 @@ namespace UI
             livesText.text = lives.ToString();
         }
 
-        public void SetGetReadySeconds(int seconds)
+        public void UpdateCountdown(int seconds)
         {
             getReadySecondsText.text = seconds.ToString();
         }

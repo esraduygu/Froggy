@@ -8,7 +8,8 @@ namespace Frogger
     {
         public Action OnLeapStart;
         public Action OnLeapEnd;
-        
+
+        [SerializeField] private PlayerAnimator animator;
         [SerializeField] private float xPos;
         [SerializeField] private float minY;
         [SerializeField] private float maxY;
@@ -43,11 +44,15 @@ namespace Frogger
             var startPosition = transform.position;
             var elapsed = 0f;
             const float duration = 0.125f;
+            const float animationStart = 0.05f;
+            const float animationEnd = 0.1f;
             
             OnLeapStart?.Invoke();
             
             while (elapsed < duration)
             {
+                UpdateAnimation(elapsed, animationEnd, animationStart);
+                
                 var normalizedTime = elapsed / duration;
                 SetPosition(Vector3.Lerp(startPosition, leapDestination, normalizedTime));
                 elapsed += Time.deltaTime;
@@ -57,6 +62,14 @@ namespace Frogger
             SetPosition(leapDestination);
             
             OnLeapEnd?.Invoke();
+        }
+
+        private void UpdateAnimation(float elapsed, float animationEnd, float animationStart)
+        {
+            if (elapsed > animationEnd)
+                animator.SetSprite(PlayerAnimator.SpriteType.Idle);
+            else if (elapsed > animationStart)
+                animator.SetSprite(PlayerAnimator.SpriteType.Leap);
         }
 
         private void SetPosition(Vector3 newPosition)

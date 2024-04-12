@@ -24,8 +24,8 @@ namespace Core
         private void OnStateChange(GameState.State state)
         {
             UpdatePlayer(state);
-            UpdateSpawn(state);
             UpdateTicker(state);
+            UpdateSpawn(state);
             UpdateLives(state);
             UpdateScore(state);
             UpdateMenus(state);

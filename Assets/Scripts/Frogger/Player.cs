@@ -11,7 +11,7 @@ namespace Frogger
         public Action OnDeath;
 
         [SerializeField] private PlayerMovementController movementController;
-        [SerializeField] private PlatformFollower _platformFollower;
+        [SerializeField] private PlatformFollower platformFollower;
         [SerializeField] private PlayerCollisionHandler collisionHandler;
         [SerializeField] private PlayerInputHandler inputHandler;
         [SerializeField] private LivesController livesController;
@@ -40,7 +40,7 @@ namespace Frogger
         private void OnLeapStart()
         {
             playerState.State = PlayerState.PlayerStates.Leaping;
-            animator.SetSprite(PlayerAnimator.SpriteType.Leap);
+            // animator.SetSprite(PlayerAnimator.SpriteType.Leap);
             sfxManager.PlaySound(SfxManager.SfxType.Leap);
         }
 
@@ -67,12 +67,15 @@ namespace Frogger
 
         private void OnDirectionInput(Vector2 direction)
         {
+            if (playerState.State is PlayerState.PlayerStates.Leaping)
+                return;
+            
             movementController.StartLeap(direction);
         }
 
         public void HandleIdleCollisions()
         {
-            if (playerState.State != PlayerState.PlayerStates.Idle || _platformFollower.Platform != null)
+            if (playerState.State != PlayerState.PlayerStates.Idle || platformFollower.Platform != null)
                 return;
 
             HandleObstacleCollision(transform.position);
@@ -88,12 +91,10 @@ namespace Frogger
             var platform = collisionHandler.CheckPlatform(position);
 
             if (platform != null)
-            {
-                _platformFollower.Platform = platform.transform;
-            }
+                platformFollower.Platform = platform.transform;
             else
             {
-                _platformFollower.Platform = null;
+                platformFollower.Platform = null;
                 HandleObstacleCollision(position);
             }
             
@@ -131,7 +132,7 @@ namespace Frogger
                 StopAllCoroutines();
             }
 
-            _platformFollower.Platform = null;
+            platformFollower.Platform = null;
             transform.SetPositionAndRotation(_initialPos, Quaternion.identity);
             _furthestRow = _initialPos.y;
             animator.SetSprite(PlayerAnimator.SpriteType.Idle);
