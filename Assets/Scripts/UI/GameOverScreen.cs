@@ -17,8 +17,8 @@ namespace UI
         
         private void SetGetReady()
         {
-            gameState.GetReady();
-            _ = new Timer(TimeSpan.FromSeconds(5), gameState.StartGame);
+            gameState.CurrentState = GameState.State.GetReady;
+            _ = new Timer(TimeSpan.FromSeconds(5), () => gameState.CurrentState = GameState.State.Playing);
         }
     }
 }

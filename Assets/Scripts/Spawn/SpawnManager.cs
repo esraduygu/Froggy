@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using UnityEngine;
 using Utilities;
@@ -10,24 +9,31 @@ namespace Spawn
         [SerializeField] private InitialSpawn[] initialSpawns;
         [SerializeField] private SpawnInterval[] spawnIntervals;
         [SerializeField] private GameObject obstaclePrefab;
-        
+
+        private bool _shouldSpawn;
         private float _timer;
         private float _spawnInterval;
-
-        private void Awake()
+        
+        public void StartSpawning()
         {
+            if (_shouldSpawn)
+                return;
+            
             _spawnInterval = PickSpawnInterval();
             
-            // Initialize();
+            Initialize();
+
+            _shouldSpawn = true;
         }
 
-        private void OnEnable()
+        public void StopSpawning()
         {
-            _spawnInterval = PickSpawnInterval();
+            if (!_shouldSpawn)
+                return;
             
-            // Initialize();
+            _shouldSpawn = false;
         }
-
+        
         private void Initialize()
         {
             foreach (var spawn in initialSpawns) 
@@ -36,6 +42,9 @@ namespace Spawn
         
         private void Update()
         {
+            if (!_shouldSpawn)
+                return;
+            
             HandleSpawnTimer();
         }
         

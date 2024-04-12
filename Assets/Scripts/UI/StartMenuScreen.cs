@@ -11,7 +11,7 @@ namespace UI
         
         private void Awake()
         {
-            gameState.StartMenu();
+            gameState.CurrentState = GameState.State.StartMenu;
         }
         
         private void Update()
@@ -22,8 +22,8 @@ namespace UI
         
         private void GetReady()
         {
-            gameState.GetReady();
-            _ = new Timer(TimeSpan.FromSeconds(5), gameState.StartGame);
+            gameState.CurrentState = GameState.State.GetReady;
+            _ = new Timer(TimeSpan.FromSeconds(5), () => gameState.CurrentState = GameState.State.Playing);
         }
         
     }

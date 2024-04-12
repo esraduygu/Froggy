@@ -21,7 +21,7 @@ namespace Core
         
         public void StartCountdown()
         {
-            _timeLeft = 30;
+            _timeLeft = 15;
             uiManager.UpdateTimerText(_timeLeft);
             _timer = new Timer(TimeSpan.FromSeconds(1), OnCountdownTick);
         }

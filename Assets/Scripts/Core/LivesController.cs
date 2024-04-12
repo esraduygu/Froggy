@@ -24,7 +24,7 @@ namespace Core
                 
                 if (value <= 0)
                 {
-                    _ = new Timer(TimeSpan.FromSeconds(1), gameState.GameOver);
+                    _ = new Timer(TimeSpan.FromSeconds(1), () => gameState.CurrentState = GameState.State.GameOver);
                 
                     return;
                 }

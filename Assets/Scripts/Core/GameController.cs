@@ -18,15 +18,20 @@ namespace Core
         
         private void OnEnable()
         {
-            gameState.OnStateChange += UpdatePlayer;
-            gameState.OnStateChange += UpdateSpawn;
-            gameState.OnStateChange += UpdateTicker;
-            gameState.OnStateChange += UpdateLives;
-            gameState.OnStateChange += UpdateScore;
-            gameState.OnStateChange += UpdateMenus;
-            gameState.OnStateChange += UpdateHomes;
+            gameState.OnStateChange += OnStateChange;
         }
-        
+
+        private void OnStateChange(GameState.State state)
+        {
+            UpdatePlayer(state);
+            UpdateSpawn(state);
+            UpdateTicker(state);
+            UpdateLives(state);
+            UpdateScore(state);
+            UpdateMenus(state);
+            UpdateHomes(state);
+        }
+
         private void Update()
         {
             if (gameState.CurrentState is GameState.State.Playing)
@@ -55,18 +60,19 @@ namespace Core
         
         private void UpdateSpawn(GameState.State state)
         {
-            if (state is GameState.State.Playing or GameState.State.GetReady or GameState.State.GameOver)
+            if (state is GameState.State.Playing or GameState.State.GetReady)
                 foreach (var spawnManager in spawnManagers)
-                        spawnManager.enabled = true;
+                        spawnManager.StartSpawning();
 
-            else if (state is GameState.State.StartMenu)
+            else if (state is GameState.State.StartMenu
+                     or GameState.State.GameOver)
                 foreach (var spawnManager in spawnManagers)
-                        spawnManager.enabled = false;
+                        spawnManager.StopSpawning();
         }
         
         private void UpdateTicker(GameState.State state)
         {
-            switch (gameState.CurrentState)
+            switch (state)
             {
                 case GameState.State.GetReady
                     or GameState.State.StartMenu
@@ -118,13 +124,7 @@ namespace Core
         
         private void OnDisable()
         {
-            gameState.OnStateChange -= UpdateScore;
-            gameState.OnStateChange -= UpdateLives;
-            gameState.OnStateChange -= UpdateTicker;
-            gameState.OnStateChange -= UpdateSpawn;
-            gameState.OnStateChange -= UpdatePlayer;
-            gameState.OnStateChange -= UpdateMenus;
-            gameState.OnStateChange -= UpdateHomes;
+            gameState.OnStateChange -= OnStateChange;
         }
     }
 }
