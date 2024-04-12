@@ -7,11 +7,11 @@ namespace UI
 {
     public class StartMenuScreen : MonoBehaviour
     {
-        [SerializeField] private GameController gameController;
+        [SerializeField] private GameState gameState;
         
         private void Awake()
         {
-            gameController.StartMenu();
+            gameState.StartMenu();
         }
         
         private void Update()
@@ -22,8 +22,9 @@ namespace UI
         
         private void GetReady()
         {
-            gameController.GetReady();
-            _ = new Timer(TimeSpan.FromSeconds(3), gameController.StartGame);
+            gameState.GetReady();
+            _ = new Timer(TimeSpan.FromSeconds(5), gameState.StartGame);
         }
+        
     }
 }

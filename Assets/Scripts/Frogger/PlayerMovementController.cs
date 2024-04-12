@@ -29,7 +29,7 @@ namespace Frogger
             transform.SetParent(platform);
         }
         
-        private float GetRotationForDirection(Vector3 direction)
+        private static float GetRotationForDirection(Vector3 direction)
         {
             if (direction == Vector3.up)
                 return 0f;

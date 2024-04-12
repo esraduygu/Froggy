@@ -7,18 +7,18 @@ namespace UI
 {
     public class GameOverScreen : MonoBehaviour
     {
-        [SerializeField] private GameController gameController;
+        [SerializeField] private GameState gameState;
         
         private void Update()
         {
             if (Input.anyKeyDown)
-                GetReady();
+                SetGetReady();
         }
         
-        private void GetReady()
+        private void SetGetReady()
         {
-            gameController.GetReady();
-            _ = new Timer(TimeSpan.FromSeconds(3), gameController.StartGame);
+            gameState.GetReady();
+            _ = new Timer(TimeSpan.FromSeconds(5), gameState.StartGame);
         }
     }
 }

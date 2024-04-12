@@ -11,14 +11,14 @@ namespace Frogger
         public Action OnDeath;
 
         [SerializeField] private PlayerMovementController movementController;
-        [SerializeField] private PlayerInputHandler inputHandler;
         [SerializeField] private PlayerCollisionHandler collisionHandler;
+        [SerializeField] private PlayerInputHandler inputHandler;
         [SerializeField] private LivesController livesController;
         [SerializeField] private PlayerAnimator animator;
         [SerializeField] private PlayerState playerState;
         [SerializeField] private SfxManager sfxManager;
+        [SerializeField] private GameState gameState;
         [SerializeField] private Ticker ticker;
-        [SerializeField] private GameController gameController;
 
         private Vector3 _initialPos;
         private float _furthestRow;
@@ -34,22 +34,6 @@ namespace Frogger
             movementController.OnLeapStart += OnLeapStart;
             movementController.OnLeapEnd += OnLeapEnd;
             inputHandler.OnDirectionInput += OnDirectionInput;
-            gameController.OnStateChange += OnStateChange;
-        }
-
-        private void OnStateChange(GameController.GameState state)
-        {
-            if (state is GameController.GameState.GameOver)
-                Respawn();
-        }
-
-        private void Update()
-        {
-            if (gameController.State == GameController.GameState.Playing)
-                HandleIdleCollisions();
-                
-            else
-                enabled = false;
         }
 
         private void OnLeapStart()
@@ -85,7 +69,7 @@ namespace Frogger
             movementController.StartLeap(direction);
         }
 
-        private void HandleIdleCollisions()
+        public void HandleIdleCollisions()
         {
             if (playerState.State != PlayerState.PlayerStates.Idle || transform.parent != null)
                 return;
@@ -136,7 +120,7 @@ namespace Frogger
 
         public void Respawn()
         {
-            if (gameController.State is GameController.GameState.Playing)
+            if (gameState.CurrentState is GameState.State.Playing)
             {
                 ticker.StopCountdown();
                 ticker.StartCountdown();

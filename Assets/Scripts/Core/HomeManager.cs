@@ -11,17 +11,17 @@ namespace Core
         public Action<Home> OnHomeCleared;
         
         [SerializeField] private Home[] homes;
-
-        public void ResetHomes()
-        {
-            foreach (var home in homes) 
-                home.SetOccupied(false);
-        }
         
         private void OnEnable()
         {
             foreach (var home in homes) 
                 home.OnOccupationChange += OnOccupationChange;
+        }
+        
+        public void ResetHomes()
+        {
+            foreach (var home in homes) 
+                home.SetOccupied(false);
         }
         
         private void OnOccupationChange(Home home, bool occupied)

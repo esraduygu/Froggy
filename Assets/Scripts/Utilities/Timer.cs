@@ -22,11 +22,6 @@ namespace Utilities
             StartTimerFromBeginning().Forget();
         }
         
-        public void Cancel()
-        {
-            _cancellation.Cancel();
-        }
-        
         private UniTaskVoid StartTimerFromBeginning()
         {
             return StartTimer(_duration);

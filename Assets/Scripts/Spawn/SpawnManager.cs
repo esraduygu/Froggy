@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using UnityEngine;
 using Utilities;
@@ -17,7 +18,14 @@ namespace Spawn
         {
             _spawnInterval = PickSpawnInterval();
             
-            Initialize();
+            // Initialize();
+        }
+
+        private void OnEnable()
+        {
+            _spawnInterval = PickSpawnInterval();
+            
+            // Initialize();
         }
 
         private void Initialize()
@@ -30,7 +38,7 @@ namespace Spawn
         {
             HandleSpawnTimer();
         }
-
+        
         private void HandleSpawnTimer()
         {
             _timer += Time.deltaTime;
@@ -53,7 +61,7 @@ namespace Spawn
             return spawnInterval.interval;
         }
 
-        private void SpawnObstacle(Vector3 pos, GameObject prefab)
+        private static void SpawnObstacle(Vector3 pos, GameObject prefab)
         {
             Instantiate(prefab, pos, Quaternion.identity);
         }

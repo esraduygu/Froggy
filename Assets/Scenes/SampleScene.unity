@@ -262,6 +262,68 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 19031772}
   m_CullTransparentMesh: 1
+--- !u!1 &31525809
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 31525811}
+  - component: {fileID: 31525810}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &31525810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 31525809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56f0a623204644ed95945db13b13e0b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  livesController: {fileID: 1324396806}
+  spawnManagers:
+  - {fileID: 133760602}
+  - {fileID: 1501063433}
+  - {fileID: 1769230842}
+  - {fileID: 1818909211}
+  - {fileID: 1145947015}
+  - {fileID: 816660726}
+  - {fileID: 1745851062}
+  - {fileID: 905786628}
+  - {fileID: 127535590}
+  - {fileID: 2080697529}
+  scoreManager: {fileID: 250677381}
+  homeManager: {fileID: 497616094}
+  gameState: {fileID: 1954587493}
+  uiManager: {fileID: 53587858}
+  player: {fileID: 1044403693}
+  ticker: {fileID: 160663362}
+--- !u!4 &31525811
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 31525809}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &48140702
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,14 +573,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9563f5f72fd431fa8a2ae145f555fb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameOverMenu: {fileID: 1087467136}
+  startMenuScreen: {fileID: 228599501}
+  getReadyMenu: {fileID: 698336789}
   scoreText: {fileID: 951117286}
   bestScoreText: {fileID: 164460833}
   timerText: {fileID: 1749902518}
+  getReadySecondsText: {fileID: 574036396}
   livesText: {fileID: 1288642187}
-  gameOverMenu: {fileID: 1087467136}
-  startMenuScreen: {fileID: 228599501}
-  getReadyMenu: {fileID: 698336794}
-  gameController: {fileID: 1954587491}
 --- !u!1 &101690665
 GameObject:
   m_ObjectHideFlags: 0
@@ -876,9 +938,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47718d14c95243808501a308d39ae7ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1044403693}
   uiManager: {fileID: 53587858}
-  gameController: {fileID: 1954587491}
+  player: {fileID: 1044403693}
 --- !u!1 &164460831
 GameObject:
   m_ObjectHideFlags: 0
@@ -1206,7 +1267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09809e125b034283921cfa535ed027f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameController: {fileID: 1954587491}
+  gameState: {fileID: 1954587493}
 --- !u!1 &250677379
 GameObject:
   m_ObjectHideFlags: 0
@@ -1251,7 +1312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 688eb172b8274ea983ff03ce005aec37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameController: {fileID: 1954587491}
+  gameController: {fileID: 31525810}
   uiManager: {fileID: 53587858}
   sfxManager: {fileID: 434133035}
   homeManager: {fileID: 497616094}
@@ -2297,7 +2358,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 698336790}
-  - component: {fileID: 698336794}
   - component: {fileID: 698336793}
   - component: {fileID: 698336792}
   - component: {fileID: 698336791}
@@ -2393,20 +2453,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &698336794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 698336789}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6b1b8a8920a46af89fcdc4d20aa5c81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameController: {fileID: 1954587491}
-  player: {fileID: 1044403693}
 --- !u!1 &763994757
 GameObject:
   m_ObjectHideFlags: 0
@@ -3471,14 +3517,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementController: {fileID: 1044403691}
-  inputHandler: {fileID: 1044403685}
   collisionHandler: {fileID: 1044403686}
+  inputHandler: {fileID: 1044403685}
   livesController: {fileID: 1324396806}
   animator: {fileID: 1044403684}
   playerState: {fileID: 1044403687}
   sfxManager: {fileID: 434133035}
+  gameState: {fileID: 1954587493}
   ticker: {fileID: 160663362}
-  gameController: {fileID: 1954587491}
 --- !u!1 &1048505338
 GameObject:
   m_ObjectHideFlags: 0
@@ -3690,7 +3736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b10c77db83be4302bc2c2b496be32373, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameController: {fileID: 1954587491}
+  gameState: {fileID: 1954587493}
 --- !u!114 &1087467137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4215,9 +4261,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92071629a9164f7bb1cde22b6c3109ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameState: {fileID: 1954587493}
   uiManager: {fileID: 53587858}
   player: {fileID: 1044403693}
-  gameController: {fileID: 1954587491}
 --- !u!1001 &1345322319
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5211,31 +5257,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1954587492}
-  - component: {fileID: 1954587491}
+  - component: {fileID: 1954587493}
   m_Layer: 0
-  m_Name: GameController
+  m_Name: GameState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1954587491
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1954587490}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9d6cb28e3e256345ae1e0cefd66882d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1044403693}
-  homeManager: {fileID: 497616094}
-  livesController: {fileID: 1324396806}
-  scoreManager: {fileID: 250677381}
-  uiManager: {fileID: 53587858}
 --- !u!4 &1954587492
 Transform:
   m_ObjectHideFlags: 0
@@ -5251,6 +5280,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1954587493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1954587490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9d6cb28e3e256345ae1e0cefd66882d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2056464752
 GameObject:
   m_ObjectHideFlags: 0
@@ -5729,12 +5770,13 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 1807735914139737677}
-  - {fileID: 1954587492}
-  - {fileID: 434133033}
   - {fileID: 459251365}
   - {fileID: 1502405521}
+  - {fileID: 1732383913}
+  - {fileID: 1954587492}
+  - {fileID: 31525811}
   - {fileID: 497616093}
   - {fileID: 250677380}
-  - {fileID: 2139746195}
+  - {fileID: 434133033}
   - {fileID: 53587854}
-  - {fileID: 1732383913}
+  - {fileID: 2139746195}

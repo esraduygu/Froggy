@@ -13,6 +13,7 @@ namespace Utilities
                 .OrderBy(x => x.Value);
 
             var random = Random.value;
+            
             foreach (var (index, probability) in probabilityIndices)
             {
                 random -= probability;
