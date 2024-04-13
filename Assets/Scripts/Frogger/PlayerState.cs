@@ -1,31 +1,16 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Frogger
 {
     public class PlayerState : MonoBehaviour
     {
-        private Action<PlayerStates> _onChange;
-        
-        private PlayerStates _state;
+        public PlayerStates state;
         
         public enum PlayerStates
         {
             Idle,
             Leaping,
             Dead
-        }
-
-        public PlayerStates State
-        {
-            get => _state;
-            set
-            {
-                if (_state == value) return;
-                
-                _state = value;
-                _onChange?.Invoke(value);
-            }
         }
     }
 }

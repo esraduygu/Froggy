@@ -1,6 +1,6 @@
 ﻿using System;
 using Frogger;
-using UI;
+using TMPro;
 using UnityEngine;
 using Utilities;
 
@@ -9,8 +9,8 @@ namespace Core
     public class LevelTimer : MonoBehaviour
     {
         public int Countdown { get; private set; }
-        
-        [SerializeField] private UIManager uiManager;
+
+        [SerializeField] private TMP_Text timerText;
         [SerializeField] private Player player;
 
         private Ticker _ticker;
@@ -18,11 +18,13 @@ namespace Core
         
         public void StartCountdown()
         {
-            if (_hasStarted) return;
+            if (_hasStarted) 
+                return;
+            
             _hasStarted = true;
             
             Countdown = 15;
-            uiManager.UpdateTimerText(Countdown);
+            UpdateTimerText();
             
             _ticker = new Ticker(TimeSpan.FromSeconds(1), UpdateCountdown);
         }
@@ -30,13 +32,18 @@ namespace Core
         private void UpdateCountdown()
         {
             Countdown--;
-            uiManager.UpdateTimerText(Countdown);
+            UpdateTimerText();
 
             if (Countdown > 0)
                 return;
             
             player.Die();
             StopCountdown();
+        }
+
+        private void UpdateTimerText()
+        {
+            timerText.text = Countdown.ToString();
         }
 
         public void StopCountdown()

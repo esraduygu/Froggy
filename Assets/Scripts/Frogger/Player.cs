@@ -39,14 +39,13 @@ namespace Frogger
 
         private void OnLeapStart()
         {
-            playerState.State = PlayerState.PlayerStates.Leaping;
-            // animator.SetSprite(PlayerAnimator.SpriteType.Leap);
+            playerState.state = PlayerState.PlayerStates.Leaping;
             sfxManager.PlaySound(SfxManager.SfxType.Leap);
         }
 
         private void OnLeapEnd()
         {
-            playerState.State = PlayerState.PlayerStates.Idle;
+            playerState.state = PlayerState.PlayerStates.Idle;
             animator.SetSprite(PlayerAnimator.SpriteType.Idle);
             
             HandleCollisions();
@@ -56,7 +55,7 @@ namespace Frogger
 
         private void CheckIfAdvancedRow()
         {
-            if (playerState.State == PlayerState.PlayerStates.Dead ||
+            if (playerState.state == PlayerState.PlayerStates.Dead ||
                 transform.position.y <= _furthestRow)
                 return;
 
@@ -67,7 +66,7 @@ namespace Frogger
 
         private void OnDirectionInput(Vector2 direction)
         {
-            if (playerState.State is PlayerState.PlayerStates.Leaping)
+            if (playerState.state is PlayerState.PlayerStates.Leaping)
                 return;
             
             movementController.StartLeap(direction);
@@ -75,7 +74,7 @@ namespace Frogger
 
         public void HandleIdleCollisions()
         {
-            if (playerState.State != PlayerState.PlayerStates.Idle || platformFollower.Platform != null)
+            if (playerState.state != PlayerState.PlayerStates.Idle || platformFollower.Platform != null)
                 return;
 
             HandleObstacleCollision(transform.position);
@@ -148,7 +147,7 @@ namespace Frogger
             transform.rotation = Quaternion.identity;
             inputHandler.enabled = false;
 
-            playerState.State = PlayerState.PlayerStates.Dead;
+            playerState.state = PlayerState.PlayerStates.Dead;
 
             OnDeath?.Invoke();
             

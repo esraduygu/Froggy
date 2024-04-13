@@ -9,9 +9,9 @@ namespace Spawn
         [SerializeField] private SpawnInterval[] spawnIntervals;
         [SerializeField] private GameObject obstaclePrefab;
 
-        private bool _shouldSpawn;
-        private float _timer;
         private float _spawnInterval;
+        private float _timer;
+        private bool _shouldSpawn;
 
         public void StartSpawning()
         {

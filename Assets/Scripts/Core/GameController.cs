@@ -11,10 +11,10 @@ namespace Core
         [SerializeField] private SpawnManager[] spawnManagers;
         [SerializeField] private ScoreManager scoreManager;
         [SerializeField] private HomeManager homeManager;
+        [SerializeField] private LevelTimer levelTimer;
         [SerializeField] private GameState gameState;
         [SerializeField] private UIManager uiManager;
         [SerializeField] private Player player;
-        [SerializeField] private LevelTimer levelTimer;
         
         private void OnEnable()
         {
@@ -60,14 +60,21 @@ namespace Core
         
         private void UpdateSpawn(GameState.State state)
         {
-            if (state is GameState.State.Playing or GameState.State.GetReady)
-                foreach (var spawnManager in spawnManagers)
+            switch (state)
+            {
+                case GameState.State.Playing or GameState.State.GetReady:
+                {
+                    foreach (var spawnManager in spawnManagers)
                         spawnManager.StartSpawning();
-
-            else if (state is GameState.State.StartMenu
-                     or GameState.State.GameOver)
-                foreach (var spawnManager in spawnManagers)
+                    break;
+                }
+                case GameState.State.StartMenu or GameState.State.GameOver:
+                {
+                    foreach (var spawnManager in spawnManagers)
                         spawnManager.StopSpawning();
+                    break;
+                }
+            }
         }
         
         private void UpdateTicker(GameState.State state)

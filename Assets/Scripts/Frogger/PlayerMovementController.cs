@@ -43,7 +43,9 @@ namespace Frogger
         {
             var startPosition = transform.position;
             var elapsed = 0f;
+            
             const float duration = 0.125f;
+            const float cooldownDuration = 0.150f;
             const float animationStart = 0.05f;
             const float animationEnd = 0.1f;
             
@@ -60,7 +62,12 @@ namespace Frogger
             }
             
             SetPosition(leapDestination);
-            
+
+            while (elapsed < cooldownDuration)
+            {
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
             OnLeapEnd?.Invoke();
         }
 

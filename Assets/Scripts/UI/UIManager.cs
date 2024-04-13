@@ -1,4 +1,4 @@
-﻿using TMPro;
+﻿using UnityEditor;
 using UnityEngine;
 
 namespace UI
@@ -8,36 +8,6 @@ namespace UI
         [SerializeField] private GameOverScreen gameOverMenu;
         [SerializeField] private StartMenuScreen startMenuScreen;
         [SerializeField] private GameObject getReadyMenu;
-        [SerializeField] private TMP_Text scoreText;
-        [SerializeField] private TMP_Text bestScoreText;
-        [SerializeField] private TMP_Text timerText;
-        [SerializeField] private TMP_Text getReadySecondsText;
-        [SerializeField] private TMP_Text livesText;
-        
-        public void UpdateScoreText(int score)
-        {
-            scoreText.text = score.ToString();
-        }
-
-        public void UpdateBestScoreText(int bestScore)
-        {
-            bestScoreText.text = bestScore.ToString();
-        }
-
-        public void UpdateTimerText(int timer)
-        {
-            timerText.text = timer.ToString();
-        }
-        
-        public void UpdateLivesText(int lives)
-        {
-            livesText.text = lives.ToString();
-        }
-
-        public void UpdateCountdown(int seconds)
-        {
-            getReadySecondsText.text = seconds.ToString();
-        }
         
         public void SetGameOverMenu(bool gameOver)
         {
@@ -55,6 +25,15 @@ namespace UI
         {
             if (getReadyMenu != null)
                 getReadyMenu.gameObject.SetActive(getReady);
+        }
+        
+        public void OnExitButtonClicked()
+        {
+#if UNITY_EDITOR
+            EditorApplication.ExitPlaymode();
+#elif UNITY_STANDALONE_WIN
+            Application.Quit();
+#endif
         }
     }
 }

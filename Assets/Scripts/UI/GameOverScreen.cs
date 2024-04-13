@@ -11,7 +11,7 @@ namespace UI
         
         private void Update()
         {
-            if (Input.anyKeyDown)
+            if (Input.anyKey && !Input.GetMouseButton(0))
                 SetGetReady();
         }
         

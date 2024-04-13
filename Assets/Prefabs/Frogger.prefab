@@ -51,9 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 640147785289152429df4318601b229b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destination: {x: 0, y: 0, z: 0}
-  playerAnimator: {fileID: 4890668822672955466}
-  playerState: {fileID: 7562579009042729571}
+  animator: {fileID: 0}
   xPos: 6
   minY: -6
   maxY: 6
@@ -97,7 +95,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: d7bfdc9000f9af84688dc929d7d5ffce, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -141,7 +139,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.012051463, y: 0.033141136}
+  m_Offset: {x: 0.0017331541, y: 0.036511898}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -152,7 +150,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7348677, y: 0.60832787}
+  m_Size: {x: 0.7624369, y: 0.6150694}
   m_EdgeRadius: 0
 --- !u!50 &243897910584748634
 Rigidbody2D:
@@ -193,9 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b997eb4829fd4354991e5eed1add47eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAnimator: {fileID: 4890668822672955466}
-  playerMovement: {fileID: 5160621913908483085}
-  inputHandler: {fileID: 2497165627894297229}
+  state: 0
 --- !u!114 &7911438260168941158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,8 +204,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb398920043d81c4b94c61b6ad7de262, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMovementController: {fileID: 5160621913908483085}
-  playerState: {fileID: 7562579009042729571}
 --- !u!114 &2497165627894297229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,7 +216,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee3f1b963f647d3b7c2b03e6a945ad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMovement: {fileID: 5160621913908483085}
 --- !u!114 &4890668822672955466
 MonoBehaviour:
   m_ObjectHideFlags: 0

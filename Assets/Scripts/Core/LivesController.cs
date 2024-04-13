@@ -1,6 +1,6 @@
 ﻿using System;
 using Frogger;
-using UI;
+using TMPro;
 using UnityEngine;
 using Utilities;
 
@@ -9,7 +9,7 @@ namespace Core
     public class LivesController : MonoBehaviour
     {
         [SerializeField] private GameState gameState;
-        [SerializeField] private UIManager uiManager;
+        [SerializeField] private TMP_Text livesText;
         [SerializeField] private Player player;
         
         private int _lives;
@@ -29,7 +29,7 @@ namespace Core
                     return;
                 }
                 
-                uiManager.UpdateLivesText(value);
+                UpdateLivesText();
             }
         }
         
@@ -56,6 +56,11 @@ namespace Core
         private void DecrementLives()
         {
             Lives--;
+        }
+
+        private void UpdateLivesText()
+        {
+            livesText.text = _lives.ToString();
         }
 
         private void OnDisable()

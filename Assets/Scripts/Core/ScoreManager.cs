@@ -1,6 +1,6 @@
 ﻿using Frogger;
 using Obstacle;
-using UI;
+using TMPro;
 using UnityEngine;
 
 namespace Core
@@ -8,11 +8,12 @@ namespace Core
     public class ScoreManager : MonoBehaviour
     {
         [SerializeField] private GameController gameController;
-        [SerializeField] private UIManager uiManager;
-        [SerializeField] private SfxManager sfxManager;
         [SerializeField] private HomeManager homeManager;
-        [SerializeField] private Player player;
         [SerializeField] private LevelTimer levelTimer;
+        [SerializeField] private SfxManager sfxManager;
+        [SerializeField] private TMP_Text scoreText;
+        [SerializeField] private TMP_Text bestScoreText;
+        [SerializeField] private Player player;
 
         private int _score;
         private int _bestScore;
@@ -23,10 +24,20 @@ namespace Core
             set
             {
                 _bestScore = value;
-                uiManager.UpdateBestScoreText(value);
+                UpdateScoreText(bestScoreText, value);
             }
         }
-
+        
+        private int Score
+        {
+            get => _score;
+            set
+            {
+                _score = value;
+                UpdateScoreText(scoreText, value);
+            }
+        }
+        
         private void OnEnable()
         {
             homeManager.OnAllHomesCleared += AllHomesCleared;
@@ -42,8 +53,7 @@ namespace Core
         
         public void ResetScore()
         {
-            _score = 0;
-            uiManager.UpdateScoreText(_score);
+            Score = 0;
         }
         
         private void LoadBestScore()
@@ -73,15 +83,18 @@ namespace Core
 
         private void IncrementScore(int amount)
         {
-            _score += amount;
+            Score += amount;
             
-            if (_score > BestScore)
+            if (Score > BestScore)
             {            
-                BestScore = _score;
-                SaveBestScore(_score);
+                BestScore = Score;
+                SaveBestScore(Score);
             }
+        }
 
-            uiManager.UpdateScoreText(_score);
+        private void UpdateScoreText(TMP_Text text, int value)
+        {
+            text.text = value.ToString();
         }
         
         private static void SaveBestScore(int value)

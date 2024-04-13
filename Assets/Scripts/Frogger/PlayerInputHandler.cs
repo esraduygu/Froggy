@@ -16,13 +16,10 @@ namespace Frogger
         {
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
                 OnDirectionInput?.Invoke(Vector2.up);
-
             else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
                 OnDirectionInput?.Invoke(Vector2.down);
-
             else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
                 OnDirectionInput?.Invoke(Vector2.left);
-
             else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
                 OnDirectionInput?.Invoke(Vector2.right);
         }
