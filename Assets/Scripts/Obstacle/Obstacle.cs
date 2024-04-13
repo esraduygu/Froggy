@@ -12,8 +12,16 @@ namespace Obstacle
         }
         
         [SerializeField] private Direction direction;
-        [SerializeField] private float speed;
-        
+        [SerializeField] private float initialSpeed;
+        [SerializeField] private float maxGameSpeed;
+
+        private float _speed;
+
+        private void Awake()
+        {
+            _speed = initialSpeed;
+        }
+
         private void Update()
         {
             Move();
@@ -22,8 +30,14 @@ namespace Obstacle
 
         private void Move()
         {
+            const float gameSpeedIncrease = 0.1f;
+            
+            _speed += gameSpeedIncrease * Time.deltaTime;
+            _speed = Mathf.Clamp(_speed, initialSpeed, maxGameSpeed);
+            
             var movementDirection = direction == Direction.Left ? Vector3.left : Vector3.right;
-            transform.MoveBy(movementDirection * (speed * Time.deltaTime));
+            transform.MoveBy(movementDirection * (_speed * Time.deltaTime));
+            Debug.Log($"Speed: {_speed}");
         }
 
         private void Destroy()

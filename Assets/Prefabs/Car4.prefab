@@ -47,7 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 1
-  speed: 4.5
+  initialSpeed: 4.5
+  maxGameSpeed: 9
 --- !u!212 &1832437098078515755
 SpriteRenderer:
   m_ObjectHideFlags: 0
